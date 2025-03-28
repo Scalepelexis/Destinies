@@ -97,7 +97,7 @@ button {
   background-color: #341c54;
   color: #eec18a;
   cursor: pointer;
-  margin-top: 0.25rem;
+  margin: 0.25rem auto 1rem; /* top: 0, left/right: auto, bottom: 1rem */
 }
 
 button:hover {
@@ -139,7 +139,7 @@ input[type="checkbox"] {
 
 .tracker-grid {
   width: 66%;
-  margin: 0 auto 2rem; /* top: 0, left/right: auto, bottom: 2rem */
+  margin: 0 auto 0; /* top: 0, left/right: auto, bottom: 0 */
   overflow-x: auto;
 }
 
