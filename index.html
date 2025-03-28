@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Destinies Companion</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="header-row">
+      <h1>Destinies</h1>
+    </div>
+
+    <div class="dice-wrapper">
+      <div class="dice-row unified-row">
+        <!-- White Dice -->
+        <div class="die-block">
+          <div class="die white-die" id="white-die1">🎲</div>
+        </div>
+        <div class="die-block">
+          <div class="die white-die" id="white-die2">🎲</div>
+        </div>
+
+        <!-- Purple Dice -->
+        <div class="die-block">
+          <div class="die purple-die" id="purple-die1">🎲</div>
+          <input type="checkbox" class="custom-checkbox" value="1" />
+        </div>
+        <div class="die-block">
+          <div class="die purple-die" id="purple-die2">🎲</div>
+          <input type="checkbox" class="custom-checkbox" value="2" />
+        </div>
+        <div class="die-block">
+          <div class="die purple-die" id="purple-die3">🎲</div>
+          <input type="checkbox" class="custom-checkbox" value="3" />
+        </div>
+      </div>
+      <div>
+        <button onclick="rollDice()">Roll Dice</button>
+      </div>
+    </div>
+
+    <div class="tracker-grid">
+      <table>
+        <thead>
+          <tr class="header-row">
+            <th>Stats</th>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+            <th>5</th>
+            <th>6</th>
+            <th>7</th>
+            <th>8</th>
+            <th>9</th>
+            <th>10</th>
+            <th>11</th>
+            <th>12</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr class="row-int">
+            <td><img src="int.png" alt="Intelligence" /></td>
+            <td>
+              <input
+                type="checkbox"
+                class="custom-checkbox"
+                name="row2"
+                value="1"
+              />
+            </td>
+            <td>
+              <input
+                type="checkbox"
+                class="custom-checkbox"
+                name="row2"
+                value="2"
+              />
+            </td>
+            <td>
+              <input
+                type="checkbox"
+                class="custom-checkbox"
+                name="row2"
+                value="3"
+              />
+            </td>
+            <td>
+              <input
+                type="checkbox"
+                class="custom-checkbox"
+                name="row2"
+                value="4"
+              />
+            </td>
+            <td>
+              <input
+                type="checkbox"
+                class="custom-checkbox"
+                name="row2"
+                value="5"
+              />
+            </td>
+            <td>
+              <input
+                type="checkbox"
+                class="custom-checkbox"
+                name="row2"
+                value="6"
+              />
+            </td>
+            <td>
+              <input
+                type="checkbox"
+                class="custom-checkbox"
+                name="row2"
+                value="7"
+              />
+            </td>
+            <td>
+              <input
+                type="checkbox"
+                class="custom-checkbox"
+                name="row2"
+                value="8"
+              />
+            </td>
+            <td>
+              <input
+                type="checkbox"
+                class="custom-checkbox"
+                name="row2"
+                value="9"
+              />
+            </td>
+            <td>
+              <input
+                type="checkbox"
+                class="custom-checkbox"
+                name="row2"
+                value="10"
+              />
+            </td>
+            <td>
+              <input
+                type="checkbox"
+                class="custom-checkbox"
+                name="row2"
+                value="11"
+              />
+            </td>
+            <td>
+              <input
+                type="checkbox"
+                class="custom-checkbox"
+                name="row2"
+                value="12"
+              />
+            </td>
+          </tr>
+          <tr class="row-dex">
+            <td><img src="dex.png" alt="Dexterity" /></td>
+            <td>
+              <input
+                type="checkbox"
+                class="custom-checkbox"
+                name="row3"
+                value="1"
+              />
+            </td>
+            <td>
+              <input
+                type="checkbox"
+                class="custom-checkbox"
+                name="row3"
+                value="2"
+              />
+            </td>
+            <td>
+              <input
+                type="checkbox"
+                class="custom-checkbox"
+                name="row3"
+                value="3"
+              />
+            </td>
+            <td>
+              <input
+                type="checkbox"
+                class="custom-checkbox"
+                name="row3"
+                value="4"
+              />
+            </td>
+            <td>
+              <input
+                type="checkbox"
+                class="custom-checkbox"
+                name="row3"
+                value="5"
+              />
+            </td>
+            <td>
+              <input
+                type="checkbox"
+                class="custom-checkbox"
+                name="row3"
+                value="6"
+              />
+            </td>
+            <td>
+              <input
+                type="checkbox"
+                class="custom-checkbox"
+                name="row3"
+                value="7"
+              />
+            </td>
+            <td>
+              <input
+                type="checkbox"
+                class="custom-checkbox"
+                name="row3"
+                value="8"
+              />
+            </td>
+            <td>
+              <input
+                type="checkbox"
+                class="custom-checkbox"
+                name="row3"
+                value="9"
+              />
+            </td>
+            <td>
+              <input
+                type="checkbox"
+                class="custom-checkbox"
+                name="row3"
+                value="10"
+              />
+            </td>
+            <td>
+              <input
+                type="checkbox"
+                class="custom-checkbox"
+                name="row3"
+                value="11"
+              />
+            </td>
+            <td>
+              <input
+                type="checkbox"
+                class="custom-checkbox"
+                name="row3"
+                value="12"
+              />
+            </td>
+          </tr>
+          <tr class="row-str">
+            <td><img src="str.png" alt="Strength" /></td>
+            <td>
+              <input
+                type="checkbox"
+                class="custom-checkbox"
+                name="row4"
+                value="1"
+              />
+            </td>
+            <td>
+              <input
+                type="checkbox"
+                class="custom-checkbox"
+                name="row4"
+                value="2"
+              />
+            </td>
+            <td>
+              <input
+                type="checkbox"
+                class="custom-checkbox"
+                name="row4"
+                value="3"
+              />
+            </td>
+            <td>
+              <input
+                type="checkbox"
+                class="custom-checkbox"
+                name="row4"
+                value="4"
+              />
+            </td>
+            <td>
+              <input
+                type="checkbox"
+                class="custom-checkbox"
+                name="row4"
+                value="5"
+              />
+            </td>
+            <td>
+              <input
+                type="checkbox"
+                class="custom-checkbox"
+                name="row4"
+                value="6"
+              />
+            </td>
+            <td>
+              <input
+                type="checkbox"
+                class="custom-checkbox"
+                name="row4"
+                value="7"
+              />
+            </td>
+            <td>
+              <input
+                type="checkbox"
+                class="custom-checkbox"
+                name="row4"
+                value="8"
+              />
+            </td>
+            <td>
+              <input
+                type="checkbox"
+                class="custom-checkbox"
+                name="row4"
+                value="9"
+              />
+            </td>
+            <td>
+              <input
+                type="checkbox"
+                class="custom-checkbox"
+                name="row4"
+                value="10"
+              />
+            </td>
+            <td>
+              <input
+                type="checkbox"
+                class="custom-checkbox"
+                name="row4"
+                value="11"
+              />
+            </td>
+            <td>
+              <input
+                type="checkbox"
+                class="custom-checkbox"
+                name="row4"
+                value="12"
+              />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note-grid">
+      <!-- Row: Item# -->
+      <div class="label-cell">Item#</div>
+      <input type="text" value="15" />
+      <input type="text" />
+      <input type="text" />
+      <input type="text" />
+      <input type="text" />
+
+      <!-- Row: Name -->
+      <div class="label-cell">Name</div>
+      <input type="text" value="Torch" />
+      <input type="text" />
+      <input type="text" />
+      <input type="text" />
+      <input type="text" />
+
+      <!-- Row: Value -->
+      <div class="label-cell">Value</div>
+      <input type="text" value="1 Gold" />
+      <input type="text" />
+      <input type="text" />
+      <input type="text" />
+      <input type="text" />
+
+      <!-- Row: Type -->
+      <div class="label-cell">Type</div>
+      <input type="text" value="Fire, Gear" />
+      <input type="text" />
+      <input type="text" />
+      <input type="text" />
+      <input type="text" />
+
+      <!-- Row: Occurrence -->
+      <div class="label-cell">Occurrence</div>
+      <input type="text" value="Discard" />
+      <input type="text" />
+      <input type="text" />
+      <input type="text" />
+      <input type="text" />
+
+      <!-- Row: Ability -->
+      <div class="label-cell">Ability</div>
+      <textarea>+1 success in each test this turn</textarea>
+      <textarea></textarea>
+      <textarea></textarea>
+      <textarea></textarea>
+      <textarea></textarea>
+
+      <!-- Row: Status -->
+      <div class="label-cell">Status</div>
+      <div class="image-cell">
+        <img class="cycle-image" src="blank.png" alt="Selector" />
+      </div>
+      <div class="image-cell">
+        <img class="cycle-image" src="blank.png" alt="Selector" />
+      </div>
+      <div class="image-cell">
+        <img class="cycle-image" src="blank.png" alt="Selector" />
+      </div>
+      <div class="image-cell">
+        <img class="cycle-image" src="blank.png" alt="Selector" />
+      </div>
+      <div class="image-cell">
+        <img class="cycle-image" src="blank.png" alt="Selector" />
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
