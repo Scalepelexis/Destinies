@@ -65,19 +65,12 @@ body {
 }
 
 .die {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 3rem;
-  height: 3rem;
-  background-color: #eec18a;
-  color: #341c54;
-  font-size: 1.5rem;
-  font-weight: bold;
-  border-radius: 12px;
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1), 0 2px 5px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s, transform 0.2s;
-  line-height: 1;
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  display: block;
+  margin: 0.5rem auto;
+  transition: transform 0.1s;
 }
 
 .purple-row .die {
