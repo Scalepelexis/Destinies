@@ -123,17 +123,17 @@ input[type="checkbox"] {
   align-items: center;
   gap: 0.5rem;
   font-weight: bold;
-  color: white;
+  color: #eec18a;
 }
 
 .tracker-summary input[type="text"] {
   width: 5rem;
   padding: 0.3rem;
   font-size: 1rem;
-  border: 1px solid #ccc;
+  border: 1px solid #b900fd;
   border-radius: 4px;
-  background-color: rgba(255,255,255,0.1);
-  color: white;
+  background-color: #874c9e;
+  color: #ffb1ff;
   text-align: center;
 }
 
