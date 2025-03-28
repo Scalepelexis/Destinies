@@ -169,7 +169,7 @@ input[type="checkbox"] {
 .note-grid {
   display: grid;
   background-color: #341c54;
-  width: 66%;
+  width: 80%;
   margin: 2rem auto;
   grid-template-columns: 1fr repeat(5, 1fr);
   gap: 0;
