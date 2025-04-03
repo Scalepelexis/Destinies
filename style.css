@@ -65,19 +65,12 @@ body {
 }
 
 .die {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 3rem;
-  height: 3rem;
-  background-color: #eec18a;
-  color: #341c54;
-  font-size: 1.5rem;
-  font-weight: bold;
-  border-radius: 12px;
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1), 0 2px 5px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s, transform 0.2s;
-  line-height: 1;
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  display: block;
+  margin: 0.5rem auto;
+  transition: transform 0.1s;
 }
 
 .purple-row .die {
@@ -104,7 +97,7 @@ button {
   background-color: #341c54;
   color: #eec18a;
   cursor: pointer;
-  margin-top: 0.25rem;
+  margin: 0.25rem auto 1rem; /* top: 0, left/right: auto, bottom: 1rem */
 }
 
 button:hover {
@@ -116,9 +109,37 @@ input[type="checkbox"] {
   transform: scale(1.3);
 }
 
+.tracker-summary {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin: 2rem auto 1rem;
+  width: 66%;
+  font-family: sans-serif;
+}
+
+.tracker-summary label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: bold;
+  color: #eec18a;
+}
+
+.tracker-summary input[type="text"] {
+  width: 5rem;
+  padding: 0.3rem;
+  font-size: 1rem;
+  border: 1px solid #b900fd;
+  border-radius: 4px;
+  background-color: #874c9e;
+  color: #ffb1ff;
+  text-align: center;
+}
+
 .tracker-grid {
   width: 66%;
-  margin: 2rem auto;
+  margin: 0 auto 0; /* top: 0, left/right: auto, bottom: 0 */
   overflow-x: auto;
 }
 

@@ -12,32 +12,39 @@
     </div>
 
     <div class="dice-wrapper">
-      <div class="dice-row unified-row">
-        <!-- White Dice -->
-        <div class="die-block">
-          <div class="die white-die" id="white-die1">🎲</div>
+        <div class="dice-row unified-row">
+          <!-- White Dice -->
+          <div class="die-block">
+            <img class="die white-die" id="white-die1" src="dice/wd1.png" alt="White Die 1" />
+          </div>
+          <div class="die-block">
+            <img class="die white-die" id="white-die2" src="dice/wd1.png" alt="White Die 2" />
+          </div>
+      
+          <!-- Purple Dice -->
+          <div class="die-block">
+            <img class="die purple-die" id="purple-die1" src="dice/pd1.png" alt="Purple Die 1" />
+            <input type="checkbox" class="custom-checkbox" value="1" />
+          </div>
+          <div class="die-block">
+            <img class="die purple-die" id="purple-die2" src="dice/pd1.png" alt="Purple Die 2" />
+            <input type="checkbox" class="custom-checkbox" value="2" />
+          </div>
+          <div class="die-block">
+            <img class="die purple-die" id="purple-die3" src="dice/pd1.png" alt="Purple Die 3" />
+            <input type="checkbox" class="custom-checkbox" value="3" />
+          </div>
         </div>
-        <div class="die-block">
-          <div class="die white-die" id="white-die2">🎲</div>
-        </div>
-
-        <!-- Purple Dice -->
-        <div class="die-block">
-          <div class="die purple-die" id="purple-die1">🎲</div>
-          <input type="checkbox" class="custom-checkbox" value="1" />
-        </div>
-        <div class="die-block">
-          <div class="die purple-die" id="purple-die2">🎲</div>
-          <input type="checkbox" class="custom-checkbox" value="2" />
-        </div>
-        <div class="die-block">
-          <div class="die purple-die" id="purple-die3">🎲</div>
-          <input type="checkbox" class="custom-checkbox" value="3" />
+      
+        <div>
+          <button onclick="rollDice()">Roll Dice</button>
         </div>
       </div>
-      <div>
-        <button onclick="rollDice()">Roll Dice</button>
-      </div>
+      
+    <div class="tracker-summary">
+      <label>Gold: <input type="text" name="gold" /></label>
+      <label>Refresh Die: <input type="text" name="refresh" /></label>
+      <label>Experience: <input type="text" name="experience" /></label>
     </div>
 
     <div class="tracker-grid">
