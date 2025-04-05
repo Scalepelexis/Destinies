@@ -122,19 +122,21 @@ input[type="checkbox"] {
 
 .tracker-item {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+  padding: 4px;
 }
 
 .tracker-item img {
-  width: 32px;
-  height: 32px;
+  width: 60px;
+  height: 60px;
   object-fit: contain;
   margin-bottom: 5px;
 }
 
 .tracker-item input[type="number"] {
-  width: 60px;
+  width: 30px;
+  height: 50px;
   text-align: center;
 }
 
@@ -372,4 +374,34 @@ input[type="checkbox"] {
   color: #eec18a;
   cursor: pointer;
   margin: 0;
+}
+
+.custom-number-input {
+  display: flex;
+  padding: 0px;
+  padding-left: 1rem;
+  align-items: center;
+  gap: 0px;
+}
+
+.custom-number-input button {
+  padding: 6px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.increment {
+  padding: 0px;
+  margin: 0px;
+}
+
+.decrement {
+  padding: 0px;
+  margin: 0px;
+}
+
+.vertical-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

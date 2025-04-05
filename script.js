@@ -69,6 +69,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Add your event listener to the roll button
   document.getElementById("rollDiceBtn")?.addEventListener("click", rollDice);
+
+  document.querySelectorAll(".custom-number-input").forEach((container) => {
+    const input = container.querySelector('input[type="number"]');
+    const increment = container.querySelector(".increment");
+    const decrement = container.querySelector(".decrement");
+
+    increment.addEventListener("click", () => {
+      input.stepUp();
+    });
+
+    decrement.addEventListener("click", () => {
+      input.stepDown();
+    });
+  });
 });
 
 function selectOption(option) {
@@ -103,3 +117,5 @@ function showCard(button) {
     display.innerHTML = `<p>No card found for #${number}</p>`;
   }
 }
+
+window.openPopup = openPopup;
