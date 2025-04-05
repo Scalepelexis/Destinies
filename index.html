@@ -8,7 +8,7 @@
   </head>
   <body>
     <div class="header-row">
-      <h1>Destinies</h1>
+      <img src="UI/destinies_logo.png" />
     </div>
 
     <div class="dice-wrapper">
@@ -18,7 +18,7 @@
           <img
             class="die white-die"
             id="white-die1"
-            src="dice/wd1.png"
+            src="UI/dice/wd1.png"
             alt="White Die 1"
           />
         </div>
@@ -26,7 +26,7 @@
           <img
             class="die white-die"
             id="white-die2"
-            src="dice/wd1.png"
+            src="UI/dice/wd2.png"
             alt="White Die 2"
           />
         </div>
@@ -36,7 +36,7 @@
           <img
             class="die purple-die"
             id="purple-die1"
-            src="dice/pd1.png"
+            src="UI/dice/pd1.png"
             alt="Purple Die 1"
           />
           <input type="checkbox" class="custom-checkbox" value="1" />
@@ -45,7 +45,7 @@
           <img
             class="die purple-die"
             id="purple-die2"
-            src="dice/pd1.png"
+            src="UI/dice/pd2.png"
             alt="Purple Die 2"
           />
           <input type="checkbox" class="custom-checkbox" value="2" />
@@ -54,7 +54,7 @@
           <img
             class="die purple-die"
             id="purple-die3"
-            src="dice/pd1.png"
+            src="UI/dice/pd3.png"
             alt="Purple Die 3"
           />
           <input type="checkbox" class="custom-checkbox" value="3" />
@@ -62,16 +62,29 @@
       </div>
 
       <div>
-        <button onclick="rollDice()">Roll Dice</button>
+        <button id="rollDiceBtn">Roll Dice</button>
       </div>
     </div>
 
+    <!-- Value Stats -->
     <div class="tracker-summary">
-      <label>Gold: <input type="text" name="gold" /></label>
-      <label>Refresh Die: <input type="text" name="refresh" /></label>
-      <label>Experience: <input type="text" name="experience" /></label>
+      <div class="tracker-item">
+        <img src="UI/icon_gold.png" alt="Gold" />
+        <input type="number" name="gold" value="0" min="0" />
+      </div>
+
+      <div class="tracker-item">
+        <img src="UI/icon_refresh_dice.png" alt="Refresh Die" />
+        <input type="number" name="refresh" value="0" min="0" />
+      </div>
+
+      <div class="tracker-item">
+        <img src="UI/icon_experience.png" alt="Experience" />
+        <input type="number" name="experience" value="0" min="0" />
+      </div>
     </div>
 
+    <!-- Stats Tracker -->
     <div class="tracker-grid">
       <table>
         <thead>
@@ -94,7 +107,7 @@
 
         <tbody>
           <tr class="row-int">
-            <td><img src="int.png" alt="Intelligence" /></td>
+            <td><img src="UI/icon_int.png" alt="Intelligence" /></td>
             <td>
               <input
                 type="checkbox"
@@ -193,7 +206,7 @@
             </td>
           </tr>
           <tr class="row-dex">
-            <td><img src="dex.png" alt="Dexterity" /></td>
+            <td><img src="UI/icon_dex.png" alt="Dexterity" /></td>
             <td>
               <input
                 type="checkbox"
@@ -292,7 +305,7 @@
             </td>
           </tr>
           <tr class="row-str">
-            <td><img src="str.png" alt="Strength" /></td>
+            <td><img src="UI/icon_str.png" alt="Strength" /></td>
             <td>
               <input
                 type="checkbox"
@@ -394,6 +407,7 @@
       </table>
     </div>
 
+    <!-- Inventory Cards -->
     <div class="card-grid">
       <div id="card1" class="card-box">
         <input type="number" placeholder="Card" />
@@ -426,33 +440,35 @@
       </div>
     </div>
 
-    <h2>Welcome to the Page</h2>
-    <p>Your selection: <span id="userChoiceDisplay">None</span></p>
-    <button id="changeSelectionBtn" onclick="openPopup()">
-      Change Selection
-    </button>
+    <!-- Select your Campaign -->
+    <div>
+      <p>Current Campaign: <span id="userChoiceDisplay">None</span></p>
+      <button id="changeSelectionBtn" onclick="openPopup()">
+        Change Selection
+      </button>
 
-    <div id="popup" style="display: none">
-      <div id="popup-box">
-        <p>Which set are you playing?</p>
-        <button class="popup-btn" onclick="selectOption('Destinies')">
-          <img src="UI/des.png" />
-        </button>
-        <button class="popup-btn" onclick="selectOption('Witchwood')">
-          <img src="UI/wtw.png" />
-        </button>
-        <button class="popup-btn" onclick="selectOption('Sea of Sand')">
-          <img src="UI/sos.png" />
-        </button>
-        <button class="popup-btn" onclick="selectOption('Myth And Folklore')">
-          <img src="UI/maf.png" />
-        </button>
-        <button class="popup-btn" onclick="selectOption('All That Glitters')">
-          <img src="UI/atg.png" />
-        </button>
+      <div id="popup" style="display: none">
+        <div id="popup-box">
+          <p>Which set are you playing?</p>
+          <button class="popup-btn" onclick="selectOption('Destinies')">
+            <img src="UI/title_des.png" />
+          </button>
+          <button class="popup-btn" onclick="selectOption('Witchwood')">
+            <img src="UI/title_wtw.png" />
+          </button>
+          <button class="popup-btn" onclick="selectOption('Sea of Sand')">
+            <img src="UI/title_sos.png" />
+          </button>
+          <button class="popup-btn" onclick="selectOption('Myth And Folklore')">
+            <img src="UI/title_maf.png" />
+          </button>
+          <button class="popup-btn" onclick="selectOption('All That Glitters')">
+            <img src="UI/title_atg.png" />
+          </button>
+        </div>
       </div>
     </div>
 
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
   </body>
 </html>
