@@ -6,7 +6,7 @@ body {
 
   /* 🎨 Gradient background from bottom to top */
   background: linear-gradient(to top, #341c54, #663192);
-  background-image: url("UI/forrest_BG.jpg");
+  background-image: url("UI/bg_forest.jpg");
   min-height: 100vh; /* ensure it covers full screen height */
   color: #eec18a; /* default text color for contrast */
 }
@@ -19,9 +19,11 @@ body {
   flex-wrap: wrap;
 }
 
-.header-row h1 {
-  font-size: 2rem;
-  margin: 0;
+.header-row img {
+  max-width: calc(100vw - 40px);
+  max-height: calc(100vh - 40px);
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .header-row button {
@@ -58,7 +60,7 @@ body {
   margin: 0 0.5rem;
 }
 
-.dice-row.unified-row {
+.unified-row {
   background: transparent;
   box-shadow: none;
   padding: 1rem;
@@ -112,29 +114,29 @@ input[type="checkbox"] {
 
 .tracker-summary {
   display: flex;
-  justify-content: center;
-  gap: 2rem;
-  margin: 2rem auto 1rem;
-  width: 66%;
-  font-family: sans-serif;
-}
-
-.tracker-summary label {
-  display: flex;
+  gap: 20px;
   align-items: center;
-  gap: 0.5rem;
-  font-weight: bold;
-  color: #eec18a;
+  padding: 10px;
+  justify-content: center;
 }
 
-.tracker-summary input[type="text"] {
-  width: 5rem;
-  padding: 0.3rem;
-  font-size: 1rem;
-  border: 1px solid #b900fd;
-  border-radius: 4px;
-  background-color: #874c9e;
-  color: #ffb1ff;
+.tracker-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 4px;
+}
+
+.tracker-item img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  margin-bottom: 5px;
+}
+
+.tracker-item input[type="number"] {
+  width: 30px;
+  height: 50px;
   text-align: center;
 }
 
@@ -293,7 +295,7 @@ input[type="checkbox"] {
   width: 1.2rem;
   height: 1.2rem;
   border: 2px solid #800080;
-  border-radius: 4px;
+  border-radius: 50%;
   background-color: #222; /* <-- background when unchecked */
   cursor: pointer;
   position: relative;
@@ -321,7 +323,7 @@ input[type="checkbox"] {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("UI/forrest_BG.jpg");
+  background-image: url("UI/bg_forest.jpg");
   display: flex;
   align-items: center;
   justify-content: center;
@@ -372,4 +374,34 @@ input[type="checkbox"] {
   color: #eec18a;
   cursor: pointer;
   margin: 0;
+}
+
+.custom-number-input {
+  display: flex;
+  padding: 0px;
+  padding-left: 1rem;
+  align-items: center;
+  gap: 0px;
+}
+
+.custom-number-input button {
+  padding: 6px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.increment {
+  padding: 0px;
+  margin: 0px;
+}
+
+.decrement {
+  padding: 0px;
+  margin: 0px;
+}
+
+.vertical-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
