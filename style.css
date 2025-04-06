@@ -10,6 +10,7 @@
 body {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
   justify-content: center;
   margin: 2px;
   font-family: sans-serif;
@@ -30,6 +31,7 @@ body {
   gap: 1rem;
   margin-bottom: 2rem;
   flex-wrap: wrap;
+  flex-direction: column;
 }
 
 .header-row img {
@@ -482,6 +484,22 @@ input[type="checkbox"] {
   max-width: 100%;
   height: auto;
   width: 300px; /* You can adjust this */
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.character-card-pair {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap; /* mobile friendly */
+}
+
+.character-card-pair img {
+  max-width: 100%;
+  height: auto;
+  width: 300px;
   border-radius: 12px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
 }
