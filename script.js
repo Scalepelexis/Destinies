@@ -1,110 +1,63 @@
 import { dataLibrary } from "./lib.js";
 
+// Use dice face values from dataLibrary
+const whiteFaces = dataLibrary.whiteFaces.map((v) => `wd${v}.png`);
+const purpleFaces = dataLibrary.purpleFaces.map((v) => {
+  if (v === "⭐️") return "pd4.png";
+  return `pd${v}.png`;
+});
+
 const cardFiles = dataLibrary.items;
 
-document.addEventListener("DOMContentLoaded", () => {
-  const whiteFaces = [
-    "wd1.png",
-    "wd2.png",
-    "wd3.png",
-    "wd1.png",
-    "wd3.png",
-    "wd4.png",
-  ];
-  const purpleFaces = [
-    "pd1.png",
-    "pd2.png",
-    "pd3.png",
-    "pd1.png",
-    "pd2.png",
-    "pd4.png",
-  ];
+// Utility function to get random die face
+const getRandomFace = (faces) => {
+  const index = Math.floor(Math.random() * faces.length);
+  return faces[index];
+};
 
-  const getRandomFace = (faces) => {
-    const index = Math.floor(Math.random() * faces.length);
-    return faces[index];
-  };
+// Roll selected dice
+const rollDice = () => {
+  const whiteDice = ["white-die1", "white-die2"];
+  const purpleDice = Array.from(document.querySelectorAll(".purple-die"))
+    .filter(
+      (img) =>
+        img.closest(".die-block")?.querySelector("input[type='checkbox']")
+          ?.checked
+    )
+    .map((img) => img.id);
 
-  const rollDice = () => {
-    const whiteDice = ["white-die1", "white-die2"];
-    const purpleDice = [];
+  const allDice = [...whiteDice, ...purpleDice];
+  let count = 0;
+  const totalFrames = 20;
+  const interval = 100;
 
-    document.querySelectorAll(".purple-die").forEach((img) => {
-      const checkbox = img
-        .closest(".die-block")
-        ?.querySelector("input[type='checkbox']");
-      if (checkbox?.checked) {
-        purpleDice.push(img.id);
-      }
+  const animation = setInterval(() => {
+    allDice.forEach((id) => {
+      const die = document.getElementById(id);
+      const faces = id.includes("white") ? whiteFaces : purpleFaces;
+      die.src = `UI/dice/${getRandomFace(faces)}`;
     });
+    count++;
+    if (count >= totalFrames) {
+      clearInterval(animation);
+    }
+  }, interval);
+};
 
-    const allDice = [...whiteDice, ...purpleDice];
-    let count = 0;
-    const totalFrames = 20;
-    const interval = 100;
-
-    const animation = setInterval(() => {
-      allDice.forEach((id) => {
-        const die = document.getElementById(id);
-        const faces = id.includes("white") ? whiteFaces : purpleFaces;
-        die.src = `UI/dice/${getRandomFace(faces)}`;
-      });
-      count++;
-      if (count >= totalFrames) {
-        clearInterval(animation);
-        // Optional: final result
-        whiteDice.forEach((id) => {
-          document.getElementById(id).src = `UI/dice/${getRandomFace(
-            whiteFaces
-          )}`;
-        });
-        purpleDice.forEach((id) => {
-          document.getElementById(id).src = `UI/dice/${getRandomFace(
-            purpleFaces
-          )}`;
-        });
-      }
-    }, interval);
-  };
-
-  // Add your event listener to the roll button
-  document.getElementById("rollDiceBtn")?.addEventListener("click", rollDice);
-
+// Increment/Decrement tracker inputs
+const setupNumberControls = () => {
   document.querySelectorAll(".custom-number-input").forEach((container) => {
     const input = container.querySelector('input[type="number"]');
     const increment = container.querySelector(".increment");
     const decrement = container.querySelector(".decrement");
 
-    increment.addEventListener("click", () => {
-      input.stepUp();
-    });
-
-    decrement.addEventListener("click", () => {
-      input.stepDown();
-    });
+    increment.addEventListener("click", () => input.stepUp());
+    decrement.addEventListener("click", () => input.stepDown());
   });
-});
-
-function selectOption(option) {
-  localStorage.setItem("userSelection", option);
-  document.getElementById("popup").style.display = "none";
-  document.getElementById("userChoiceDisplay").textContent = option;
-}
-
-function openPopup() {
-  document.getElementById("popup").style.display = "flex";
-}
-
-// On load, check if there's a saved selection
-window.onload = function () {
-  const saved = localStorage.getItem("userSelection");
-  if (saved) {
-    document.getElementById("userChoiceDisplay").textContent = saved;
-  } else {
-    openPopup();
-  }
 };
-function showCard(button) {
+
+// Card image viewer
+const showCard = (button) => {
   const box = button.parentElement;
   const input = box.querySelector("input");
   const display = box.querySelector(".card-display");
@@ -116,6 +69,48 @@ function showCard(button) {
   } else {
     display.innerHTML = `<p>No card found for #${number}</p>`;
   }
-}
+};
 
-window.openPopup = openPopup;
+// Update character card image
+const updateCharacterCard = (campaign) => {
+  const container = document.getElementById("characterCardContainer");
+  if (container) {
+    container.innerHTML = `<img src="cards/Characters/${campaign}/character.gif" alt="${campaign} Character">`;
+  }
+};
+
+// Campaign selection
+const selectOption = (option) => {
+  localStorage.setItem("userSelection", option);
+  alert(localStorage);
+  document.getElementById("userChoiceDisplay").textContent = option;
+  updateCharacterCard(option);
+
+  // Highlight the selected campaign button
+  document.querySelectorAll(".campaign-btn").forEach((btn) => {
+    btn.classList.remove("selected");
+    const img = btn.querySelector("img");
+    if (img?.alt === option) {
+      btn.classList.add("selected");
+    }
+  });
+};
+
+// DOMContentLoaded init
+window.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("rollDiceBtn")?.addEventListener("click", rollDice);
+  setupNumberControls();
+
+  const saved = localStorage.getItem("userSelection");
+  if (saved) {
+    selectOption(saved); // this handles both display and highlight now
+  }
+
+  document.querySelectorAll(".card-box button").forEach((btn) => {
+    btn.addEventListener("click", () => showCard(btn));
+  });
+});
+
+// Export to global (for inline HTML use if needed)
+window.selectOption = selectOption;
+window.showCard = showCard;

@@ -7,8 +7,32 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <div class="campaign-nav">
+      <button class="campaign-btn" onclick="selectOption('Destinies')">
+        <img src="UI/title_des.png" alt="Destinies" />
+      </button>
+      <button class="campaign-btn" onclick="selectOption('Witchwood')">
+        <img src="UI/title_wtw.png" alt="Witchwood" />
+      </button>
+      <button class="campaign-btn" onclick="selectOption('Sea_of_Sand')">
+        <img src="UI/title_sos.png" alt="Sea of Sand" />
+      </button>
+      <button class="campaign-btn" onclick="selectOption('Myth_and_Folklore')">
+        <img src="UI/title_maf.png" alt="Myth and Folklore" />
+      </button>
+      <button class="campaign-btn" onclick="selectOption('All_That_Glitters')">
+        <img src="UI/title_atg.png" alt="All That Glitters" />
+      </button>
+    </div>
+
+    <div id="characterCardContainer" class="character-card-container"></div>
+
     <div class="header-row">
       <img src="UI/destinies_logo.png" />
+    </div>
+
+    <div id="characterCardContainer" class="character-card-container">
+      <!-- Character card image will go here -->
     </div>
 
     <div class="dice-wrapper">
@@ -455,35 +479,6 @@
         <input type="number" placeholder="Card" />
         <button onclick="showCard(this)">Show</button>
         <div class="card-display"></div>
-      </div>
-    </div>
-
-    <!-- Select your Campaign -->
-    <div>
-      <p>Current Campaign: <span id="userChoiceDisplay">None</span></p>
-      <button id="changeSelectionBtn" onclick="openPopup()">
-        Change Selection
-      </button>
-
-      <div id="popup" style="display: none">
-        <div id="popup-box">
-          <p>Which set are you playing?</p>
-          <button class="popup-btn" onclick="selectOption('Destinies')">
-            <img src="UI/title_des.png" />
-          </button>
-          <button class="popup-btn" onclick="selectOption('Witchwood')">
-            <img src="UI/title_wtw.png" />
-          </button>
-          <button class="popup-btn" onclick="selectOption('Sea of Sand')">
-            <img src="UI/title_sos.png" />
-          </button>
-          <button class="popup-btn" onclick="selectOption('Myth And Folklore')">
-            <img src="UI/title_maf.png" />
-          </button>
-          <button class="popup-btn" onclick="selectOption('All That Glitters')">
-            <img src="UI/title_atg.png" />
-          </button>
-        </div>
       </div>
     </div>
 
