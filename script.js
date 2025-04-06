@@ -9,12 +9,6 @@ const purpleFaces = dataLibrary.purpleFaces.map((v) => {
 
 const cardFiles = dataLibrary.items;
 
-// Set option for campaign
-const label = document.getElementById("userChoiceDisplay");
-if (label) {
-  label.textContent = option;
-}
-
 // Utility function to get random die face
 const getRandomFace = (faces) => {
   const index = Math.floor(Math.random() * faces.length);
@@ -88,8 +82,11 @@ const updateCharacterCard = (campaign) => {
 const selectOption = (option) => {
   localStorage.setItem("userSelection", option);
 
+  // Set option for campaign
   const label = document.getElementById("userChoiceDisplay");
-  if (label) label.textContent = option;
+  if (label) {
+    label.textContent = option;
+  }
 
   updateCharacterCard(option); // (still shows the default one)
   populateCharacterDropdown(option); // <-- Add this line
@@ -123,6 +120,9 @@ const populateCharacterDropdown = (campaign) => {
 
   container.style.display = "block";
 };
+// Export to global (for inline HTML use if needed)
+window.selectOption = selectOption;
+window.showCard = showCard;
 
 // DOMContentLoaded init
 window.addEventListener("DOMContentLoaded", () => {
@@ -151,7 +151,3 @@ window.addEventListener("DOMContentLoaded", () => {
       }
     });
 });
-
-// Export to global (for inline HTML use if needed)
-window.selectOption = selectOption;
-window.showCard = showCard;
