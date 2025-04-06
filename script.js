@@ -82,7 +82,6 @@ const updateCharacterCard = (campaign) => {
 // Campaign selection
 const selectOption = (option) => {
   localStorage.setItem("userSelection", option);
-  alert(localStorage);
   document.getElementById("userChoiceDisplay").textContent = option;
   updateCharacterCard(option);
 
