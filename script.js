@@ -75,7 +75,7 @@ const showCard = (button) => {
 const updateCharacterCard = (campaign) => {
   const container = document.getElementById("characterCardContainer");
   if (container) {
-    container.innerHTML = `<img src="cards/Characters/${campaign}/character.gif" alt="${campaign} Character">`;
+    container.innerHTML = `<img src="cards/Character/${campaign}/character.gif" alt="${campaign} character">`;
   }
 };
 
