@@ -464,3 +464,20 @@ input[type="checkbox"] {
   transform: scale(1.05);
   filter: brightness(1.15);
 }
+
+.character-card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  max-width: 100%;
+}
+
+.character-card-container img {
+  max-width: 100%;
+  height: auto;
+  width: 300px; /* You can adjust this */
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}

@@ -8,7 +8,7 @@
   </head>
   <body>
     <div class="campaign-nav">
-      <p>Current Campaign: <span id="userChoiceDisplay">None</span></p>
+      <span id="userChoiceDisplay" style="display: none"></span>
       <button class="campaign-btn" onclick="selectOption('Destinies')">
         <img src="UI/title_des.png" alt="Destinies" />
       </button>
@@ -26,14 +26,22 @@
       </button>
     </div>
 
-    <div id="characterCardContainer" class="character-card-container"></div>
-
     <div class="header-row">
       <img src="UI/destinies_logo.png" />
     </div>
 
     <div id="characterCardContainer" class="character-card-container">
       <!-- Character card image will go here -->
+    </div>
+
+    <div
+      id="characterDropdownContainer"
+      style="display: none; margin-bottom: 2rem"
+    >
+      <label for="characterSelect">Choose a character:</label>
+      <select id="characterSelect">
+        <option value="">-- Select a character --</option>
+      </select>
     </div>
 
     <div class="dice-wrapper">

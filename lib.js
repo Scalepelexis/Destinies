@@ -1,7 +1,7 @@
 const whiteFaces = ["1", "3", "1", "3", "2", "4"];
 const purpleFaces = ["1", "2", "1", "2", "3", "⭐️"];
 
-const mythandFolklore = [
+const Myth_and_Folklore = [
   "Apprentice",
   "Assistant",
   "Forester",
@@ -20,7 +20,7 @@ const mythandFolklore = [
   "Vigilante",
   "Woodswoman",
 ];
-const seaofSand = [
+const Sea_of_Sand = [
   "Alchemist",
   "Chaplain",
   "Citizen",
@@ -40,7 +40,7 @@ const seaofSand = [
   "Squire",
   "Townswoman",
 ];
-const witchwood = [
+const Witchwood = [
   "The_Brave",
   "The_Bride",
   "The_Broken",
@@ -66,7 +66,7 @@ const witchwood = [
   "The_Wanderer",
   "The_Warrior",
 ];
-const destinies = [
+const Destinies = [
   "Afflictor",
   "Corruptor",
   "Defender",
@@ -99,7 +99,7 @@ const destinies = [
   "Witch",
   "Woodsman",
 ];
-const glitters = [
+const All_That_Glitters = [
   "The_Accountant",
   "The_Acolyte",
   "The_Mayor",
@@ -291,10 +291,10 @@ const items = [
 export const dataLibrary = {
   whiteFaces,
   purpleFaces,
-  mythandFolklore,
-  seaofSand,
-  witchwood,
-  destinies,
-  glitters,
+  Myth_and_Folklore,
+  Sea_of_Sand,
+  Witchwood,
+  Destinies,
+  All_That_Glitters,
   items,
 };

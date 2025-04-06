@@ -9,6 +9,12 @@ const purpleFaces = dataLibrary.purpleFaces.map((v) => {
 
 const cardFiles = dataLibrary.items;
 
+// Set option for campaign
+const label = document.getElementById("userChoiceDisplay");
+if (label) {
+  label.textContent = option;
+}
+
 // Utility function to get random die face
 const getRandomFace = (faces) => {
   const index = Math.floor(Math.random() * faces.length);
@@ -71,21 +77,24 @@ const showCard = (button) => {
   }
 };
 
-// Update character card image
 const updateCharacterCard = (campaign) => {
   const container = document.getElementById("characterCardContainer");
   if (container) {
-    container.innerHTML = `<img src="cards/Character/${campaign}/character.gif" alt="${campaign} character">`;
+    container.innerHTML = `<img src="cards/Character/${campaign}/character.gif" alt="${campaign} Character">`;
   }
 };
 
 // Campaign selection
 const selectOption = (option) => {
   localStorage.setItem("userSelection", option);
-  document.getElementById("userChoiceDisplay").textContent = option;
-  updateCharacterCard(option);
 
-  // Highlight the selected campaign button
+  const label = document.getElementById("userChoiceDisplay");
+  if (label) label.textContent = option;
+
+  updateCharacterCard(option); // (still shows the default one)
+  populateCharacterDropdown(option); // <-- Add this line
+
+  // Highlight selected
   document.querySelectorAll(".campaign-btn").forEach((btn) => {
     btn.classList.remove("selected");
     const img = btn.querySelector("img");
@@ -93,6 +102,26 @@ const selectOption = (option) => {
       btn.classList.add("selected");
     }
   });
+};
+
+// Character Select Dropdown
+const populateCharacterDropdown = (campaign) => {
+  const characters = dataLibrary[campaign];
+  const container = document.getElementById("characterDropdownContainer");
+  const dropdown = document.getElementById("characterSelect");
+
+  if (!characters || !container || !dropdown) return;
+
+  dropdown.innerHTML = `<option value="">-- Select a character --</option>`;
+
+  characters.forEach((name) => {
+    const option = document.createElement("option");
+    option.value = name;
+    option.textContent = name.replace(/_/g, " ");
+    dropdown.appendChild(option);
+  });
+
+  container.style.display = "block";
 };
 
 // DOMContentLoaded init
@@ -108,6 +137,19 @@ window.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".card-box button").forEach((btn) => {
     btn.addEventListener("click", () => showCard(btn));
   });
+
+  document
+    .getElementById("characterSelect")
+    ?.addEventListener("change", (e) => {
+      const character = e.target.value;
+      const campaign =
+        document.getElementById("userChoiceDisplay")?.textContent;
+
+      if (character) {
+        const container = document.getElementById("characterCardContainer");
+        container.innerHTML = `<img src="cards/Character/${campaign}/${character}.gif" alt="${character}">`;
+      }
+    });
 });
 
 // Export to global (for inline HTML use if needed)
