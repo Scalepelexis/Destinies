@@ -8,7 +8,10 @@
 }
 
 body {
-  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 2px;
   font-family: sans-serif;
   text-align: center;
   padding: 2rem;
@@ -50,10 +53,11 @@ body {
 
 .dice-row {
   display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
   justify-content: center;
-  background: var(--tan-medium);
   border-radius: 10px;
-  padding: 1rem;
+  padding: 0;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -74,7 +78,6 @@ body {
   background: transparent;
   box-shadow: none;
   padding: 1rem;
-  flex-wrap: nowrap;
 }
 
 .die {
@@ -103,11 +106,11 @@ body {
 }
 
 button {
-  padding: 1rem 2rem;
+  padding: 1rem 1rem;
   font-size: 1rem;
   border: none;
   border-radius: 5px;
-  background-color: #341c54;
+  background-color: var(--red-banner);
   color: var(--tan-medium);
   cursor: url("UI/icon_pointer_yellow.png");
   margin: 0.25rem auto 1rem; /* top: 0, left/right: auto, bottom: 1rem */
@@ -124,6 +127,7 @@ input[type="checkbox"] {
 
 .tracker-summary {
   display: flex;
+  flex-wrap: wrap;
   gap: 20px;
   align-items: center;
   padding: 10px;
@@ -306,9 +310,9 @@ input[type="checkbox"] {
   -webkit-appearance: none;
   width: 1.2rem;
   height: 1.2rem;
-  border: 2px solid #800080;
+  border: 2px solid var(--green-border);
   border-radius: 50%;
-  background-color: #222; /* <-- background when unchecked */
+  background-color: var(--dark-green); /* <-- background when unchecked */
   cursor: url("UI/icon_pointer_black.png");
   position: relative;
 }
