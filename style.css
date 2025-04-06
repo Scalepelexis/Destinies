@@ -433,7 +433,6 @@ input[type="checkbox"] {
   align-items: center;
   gap: 0;
   margin-bottom: 0;
-  max-width: 500px;
   background-color: rgba(
     97,
     89,
@@ -499,7 +498,7 @@ input[type="checkbox"] {
 .character-card-pair img {
   max-width: 100%;
   height: auto;
-  width: 300px;
+  width: 500px;
   border-radius: 12px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
 }
