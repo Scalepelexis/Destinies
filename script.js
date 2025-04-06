@@ -74,7 +74,18 @@ const showCard = (button) => {
 const updateCharacterCard = (campaign) => {
   const container = document.getElementById("characterCardContainer");
   if (container) {
-    container.innerHTML = `<img src="cards/Character/${campaign}/character.gif" alt="${campaign} Character">`;
+    container.innerHTML = `
+      <div class="character-card-pair">
+        <img 
+          src="cards/Character/${campaign}/character.gif" 
+          alt="${campaign} Character Front"
+        />
+        <img 
+          src="cards/Character/${campaign}/back/character_back.gif" 
+          alt="${campaign} Character Back"
+        />
+      </div>
+    `;
   }
 };
 
@@ -147,7 +158,18 @@ window.addEventListener("DOMContentLoaded", () => {
 
       if (character) {
         const container = document.getElementById("characterCardContainer");
-        container.innerHTML = `<img src="cards/Character/${campaign}/${character}.gif" alt="${character}">`;
+        container.innerHTML = `
+        <div class="character-card-pair">
+          <img 
+            src="cards/Character/${campaign}/${character}.gif" 
+            alt="${character} Front"
+          />
+          <img 
+            src="cards/Character/${campaign}/back/${character}_back.gif" 
+            alt="${character} Back"
+          />
+        </div>
+        `;
       }
     });
 });
