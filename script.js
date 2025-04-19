@@ -173,3 +173,15 @@ window.addEventListener("DOMContentLoaded", () => {
       }
     });
 });
+
+document.getElementById("addCardBtn")?.addEventListener("click", () => {
+  const hiddenCards = Array.from(document.querySelectorAll(".card-box")).filter(
+    (box) => box.style.display === "none"
+  );
+
+  if (hiddenCards.length > 0) {
+    hiddenCards[0].style.display = "block";
+  } else {
+    alert("Maximum number of cards added.");
+  }
+});
