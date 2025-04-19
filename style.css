@@ -514,3 +514,13 @@ input[type="checkbox"] {
   border-radius: 12px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
 }
+
+.card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;  /* Center items horizontally */
+  gap: 1rem;                /* Space between cards */
+  padding: 1rem;
+}
+
+
