@@ -462,49 +462,28 @@
     </div>
 
     <!-- Inventory Cards -->
-    <div class="card-grid">
-      <div id="card1" class="card-box">
-        <input type="number" placeholder="Card" />
-        <button onclick="showCard(this)">Show</button>
-        <div class="card-display"></div>
-      </div>
+<div class="card-grid">
+  <div id="card1" class="card-box">
+    <input type="number" placeholder="Card" />
+    <button onclick="showCard(this)">Show</button>
+    <div class="card-display"></div>
+  </div>
 
-      <div id="card2" class="card-box">
-        <input type="number" placeholder="Card" />
-        <button onclick="showCard(this)">Show</button>
-        <div class="card-display"></div>
-      </div>
+  <button id="addCardBtn">+ Add Card</button>
 
-      <div id="card3" class="card-box">
-        <input type="number" placeholder="Card" />
-        <button onclick="showCard(this)">Show</button>
-        <div class="card-display"></div>
-      </div>
+  <div id="card2" class="card-box" style="display: none;">
+    <input type="number" placeholder="Card" />
+    <button onclick="showCard(this)">Show</button>
+    <div class="card-display"></div>
+  </div>
 
-      <div id="card4" class="card-box">
-        <input type="number" placeholder="Card" />
-        <button onclick="showCard(this)">Show</button>
-        <div class="card-display"></div>
-      </div>
-
-      <div id="card5" class="card-box">
-        <input type="number" placeholder="Card" />
-        <button onclick="showCard(this)">Show</button>
-        <div class="card-display"></div>
-      </div>
-      
-      <div id="card6" class="card-box">
-        <input type="number" placeholder="Card" />
-        <button onclick="showCard(this)">Show</button>
-        <div class="card-display"></div>
-      </div>
-      
-      <div id="card7" class="card-box">
-        <input type="number" placeholder="Card" />
-        <button onclick="showCard(this)">Show</button>
-        <div class="card-display"></div>
-      </div>
-    </div>
+  <!-- Repeat same structure for card3 to card7 -->
+  <div id="card3" class="card-box" style="display: none;">...</div>
+  <div id="card4" class="card-box" style="display: none;">...</div>
+  <div id="card5" class="card-box" style="display: none;">...</div>
+  <div id="card6" class="card-box" style="display: none;">...</div>
+  <div id="card7" class="card-box" style="display: none;">...</div>
+</div>
 
     <script type="module" src="script.js"></script>
   </body>
