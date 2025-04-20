@@ -20,6 +20,33 @@ const toggleShop = () => {
 shopIcon.addEventListener("click", toggleShop);
 window.toggleShop = toggleShop;
 
+let inventory = [];
+
+function addCardToInventory(cardImage) {
+  if (inventory.length >= 7) return;
+
+  const container = document.getElementById("inventoryCards");
+  const card = document.createElement("div");
+  card.className = "card-slot";
+  card.style.backgroundImage = `url(${cardImage})`;
+
+  container.appendChild(card);
+  inventory.push(cardImage);
+}
+
+// Example usage:
+window.addCardToInventory = addCardToInventory;
+
+function addCardToShop(cardImage) {
+  const shopContainer = document.getElementById("shopCardContainer");
+  const card = document.createElement("div");
+  card.className = "card-slot";
+  card.style.backgroundImage = `url(${cardImage})`;
+
+  shopContainer.appendChild(card);
+}
+window.addCardToShop = addCardToShop;
+
 // Utility function to get random die face
 const getRandomFace = (faces) => {
   const index = Math.floor(Math.random() * faces.length);
