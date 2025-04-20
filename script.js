@@ -56,21 +56,6 @@ const setupNumberControls = () => {
   });
 };
 
-// Card image viewer
-const showCard = (button) => {
-  const box = button.parentElement;
-  const input = box.querySelector("input");
-  const display = box.querySelector(".card-display");
-  const number = input.value.trim();
-  const match = cardFiles.find((name) => name.startsWith(number + "-"));
-
-  if (match) {
-    display.innerHTML = `<img src="cards/items/${match}.gif" alt="Card ${number}">`;
-  } else {
-    display.innerHTML = `<p>No card found for #${number}</p>`;
-  }
-};
-
 const updateCharacterCard = (campaign) => {
   const container = document.getElementById("characterCardContainer");
   if (container) {
@@ -133,7 +118,6 @@ const populateCharacterDropdown = (campaign) => {
 };
 // Export to global (for inline HTML use if needed)
 window.selectOption = selectOption;
-window.showCard = showCard;
 
 // DOMContentLoaded init
 window.addEventListener("DOMContentLoaded", () => {
@@ -144,10 +128,6 @@ window.addEventListener("DOMContentLoaded", () => {
   if (saved) {
     selectOption(saved); // this handles both display and highlight now
   }
-
-  document.querySelectorAll(".card-box button").forEach((btn) => {
-    btn.addEventListener("click", () => showCard(btn));
-  });
 
   document
     .getElementById("characterSelect")

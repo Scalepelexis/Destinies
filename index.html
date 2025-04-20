@@ -42,455 +42,187 @@
         </select>
       </div>
     </div>
-
-    <div class="dice-wrapper">
-      <div class="unified-row">
-        <!-- White Dice -->
-        <div class="dice-row">
-          <div class="die-block">
-            <img
-              class="die white-die"
-              id="white-die1"
-              src="UI/dice/wd1.png"
-              alt="White Die 1"
-            />
+    <div class="wrapper-dice-and-currency">
+      <div class="dice-wrapper">
+        <div class="unified-row">
+          <!-- White Dice -->
+          <div class="dice-row">
+            <div class="die-block">
+              <img
+                class="die white-die"
+                id="white-die1"
+                src="UI/dice/wd1.png"
+                alt="White Die 1"
+              />
+            </div>
+            <div class="die-block">
+              <img
+                class="die white-die"
+                id="white-die2"
+                src="UI/dice/wd2.png"
+                alt="White Die 2"
+              />
+            </div>
           </div>
-          <div class="die-block">
-            <img
-              class="die white-die"
-              id="white-die2"
-              src="UI/dice/wd2.png"
-              alt="White Die 2"
-            />
+
+          <!-- Purple Dice -->
+          <div class="dice-row">
+            <div class="die-block">
+              <img
+                class="die purple-die"
+                id="purple-die1"
+                src="UI/dice/pd1.png"
+                alt="Purple Die 1"
+              />
+              <input type="checkbox" class="custom-checkbox" value="1" />
+            </div>
+            <div class="die-block">
+              <img
+                class="die purple-die"
+                id="purple-die2"
+                src="UI/dice/pd2.png"
+                alt="Purple Die 2"
+              />
+              <input type="checkbox" class="custom-checkbox" value="2" />
+            </div>
+            <div class="die-block">
+              <img
+                class="die purple-die"
+                id="purple-die3"
+                src="UI/dice/pd3.png"
+                alt="Purple Die 3"
+              />
+              <input type="checkbox" class="custom-checkbox" value="3" />
+            </div>
           </div>
         </div>
 
-        <!-- Purple Dice -->
-        <div class="dice-row">
-          <div class="die-block">
-            <img
-              class="die purple-die"
-              id="purple-die1"
-              src="UI/dice/pd1.png"
-              alt="Purple Die 1"
-            />
-            <input type="checkbox" class="custom-checkbox" value="1" />
-          </div>
-          <div class="die-block">
-            <img
-              class="die purple-die"
-              id="purple-die2"
-              src="UI/dice/pd2.png"
-              alt="Purple Die 2"
-            />
-            <input type="checkbox" class="custom-checkbox" value="2" />
-          </div>
-          <div class="die-block">
-            <img
-              class="die purple-die"
-              id="purple-die3"
-              src="UI/dice/pd3.png"
-              alt="Purple Die 3"
-            />
-            <input type="checkbox" class="custom-checkbox" value="3" />
-          </div>
+        <div>
+          <button id="rollDiceBtn">Roll Dice</button>
         </div>
       </div>
 
-      <div>
-        <button id="rollDiceBtn">Roll Dice</button>
+      <!-- Value Stats -->
+      <div class="tracker-summary">
+        <div class="tracker-item">
+          <img src="UI/icon_gold.png" alt="Gold" />
+          <div class="custom-number-input">
+            <input type="number" name="gold" value="0" min="0" />
+            <div class="vertical-buttons">
+              <button type="button" class="increment">▲</button>
+              <button type="button" class="decrement">▼</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="tracker-item">
+          <img src="UI/icon_experience.png" alt="Experience" />
+          <div class="custom-number-input">
+            <input type="number" name="experience" value="0" min="0" />
+            <div class="vertical-buttons">
+              <button type="button" class="increment">▲</button>
+              <button type="button" class="decrement">▼</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="tracker-item">
+          <img src="UI/icon_refresh_dice.png" alt="Refresh Die" />
+          <div class="custom-number-input">
+            <input type="number" name="refresh" value="0" min="0" />
+            <div class="vertical-buttons">
+              <button type="button" class="increment">▲</button>
+              <button type="button" class="decrement">▼</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-
-    <!-- Value Stats -->
-    <div class="tracker-summary">
-      <div class="tracker-item">
-        <img src="UI/icon_gold.png" alt="Gold" />
-        <div class="custom-number-input">
-          <input type="number" name="gold" value="0" min="0" />
-          <div class="vertical-buttons">
-            <button type="button" class="increment">▲</button>
-            <button type="button" class="decrement">▼</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="tracker-item">
-        <img src="UI/icon_experience.png" alt="Experience" />
-        <div class="custom-number-input">
-          <input type="number" name="experience" value="0" min="0" />
-          <div class="vertical-buttons">
-            <button type="button" class="increment">▲</button>
-            <button type="button" class="decrement">▼</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="tracker-item">
-        <img src="UI/icon_refresh_dice.png" alt="Refresh Die" />
-        <div class="custom-number-input">
-          <input type="number" name="refresh" value="0" min="0" />
-          <div class="vertical-buttons">
-            <button type="button" class="increment">▲</button>
-            <button type="button" class="decrement">▼</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <!-- Stats Tracker -->
-    <div class="tracker-grid">
-      <table>
-        <thead>
-          <tr class="header-row">
-            <th>Stats</th>
-            <th>1</th>
-            <th>2</th>
-            <th>3</th>
-            <th>4</th>
-            <th>5</th>
-            <th>6</th>
-            <th>7</th>
-            <th>8</th>
-            <th>9</th>
-            <th>10</th>
-            <th>11</th>
-            <th>12</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr class="row-int">
-            <td><img src="UI/icon_int.png" alt="Intelligence" /></td>
-            <td>
-              <input
-                type="checkbox"
-                class="custom-checkbox"
-                name="row2"
-                value="1"
-              />
-            </td>
-            <td>
-              <input
-                type="checkbox"
-                class="custom-checkbox"
-                name="row2"
-                value="2"
-              />
-            </td>
-            <td>
-              <input
-                type="checkbox"
-                class="custom-checkbox"
-                name="row2"
-                value="3"
-              />
-            </td>
-            <td>
-              <input
-                type="checkbox"
-                class="custom-checkbox"
-                name="row2"
-                value="4"
-              />
-            </td>
-            <td>
-              <input
-                type="checkbox"
-                class="custom-checkbox"
-                name="row2"
-                value="5"
-              />
-            </td>
-            <td>
-              <input
-                type="checkbox"
-                class="custom-checkbox"
-                name="row2"
-                value="6"
-              />
-            </td>
-            <td>
-              <input
-                type="checkbox"
-                class="custom-checkbox"
-                name="row2"
-                value="7"
-              />
-            </td>
-            <td>
-              <input
-                type="checkbox"
-                class="custom-checkbox"
-                name="row2"
-                value="8"
-              />
-            </td>
-            <td>
-              <input
-                type="checkbox"
-                class="custom-checkbox"
-                name="row2"
-                value="9"
-              />
-            </td>
-            <td>
-              <input
-                type="checkbox"
-                class="custom-checkbox"
-                name="row2"
-                value="10"
-              />
-            </td>
-            <td>
-              <input
-                type="checkbox"
-                class="custom-checkbox"
-                name="row2"
-                value="11"
-              />
-            </td>
-            <td>
-              <input
-                type="checkbox"
-                class="custom-checkbox"
-                name="row2"
-                value="12"
-              />
-            </td>
-          </tr>
-          <tr class="row-dex">
-            <td><img src="UI/icon_dex.png" alt="Dexterity" /></td>
-            <td>
-              <input
-                type="checkbox"
-                class="custom-checkbox"
-                name="row3"
-                value="1"
-              />
-            </td>
-            <td>
-              <input
-                type="checkbox"
-                class="custom-checkbox"
-                name="row3"
-                value="2"
-              />
-            </td>
-            <td>
-              <input
-                type="checkbox"
-                class="custom-checkbox"
-                name="row3"
-                value="3"
-              />
-            </td>
-            <td>
-              <input
-                type="checkbox"
-                class="custom-checkbox"
-                name="row3"
-                value="4"
-              />
-            </td>
-            <td>
-              <input
-                type="checkbox"
-                class="custom-checkbox"
-                name="row3"
-                value="5"
-              />
-            </td>
-            <td>
-              <input
-                type="checkbox"
-                class="custom-checkbox"
-                name="row3"
-                value="6"
-              />
-            </td>
-            <td>
-              <input
-                type="checkbox"
-                class="custom-checkbox"
-                name="row3"
-                value="7"
-              />
-            </td>
-            <td>
-              <input
-                type="checkbox"
-                class="custom-checkbox"
-                name="row3"
-                value="8"
-              />
-            </td>
-            <td>
-              <input
-                type="checkbox"
-                class="custom-checkbox"
-                name="row3"
-                value="9"
-              />
-            </td>
-            <td>
-              <input
-                type="checkbox"
-                class="custom-checkbox"
-                name="row3"
-                value="10"
-              />
-            </td>
-            <td>
-              <input
-                type="checkbox"
-                class="custom-checkbox"
-                name="row3"
-                value="11"
-              />
-            </td>
-            <td>
-              <input
-                type="checkbox"
-                class="custom-checkbox"
-                name="row3"
-                value="12"
-              />
-            </td>
-          </tr>
-          <tr class="row-str">
-            <td><img src="UI/icon_str.png" alt="Strength" /></td>
-            <td>
-              <input
-                type="checkbox"
-                class="custom-checkbox"
-                name="row4"
-                value="1"
-              />
-            </td>
-            <td>
-              <input
-                type="checkbox"
-                class="custom-checkbox"
-                name="row4"
-                value="2"
-              />
-            </td>
-            <td>
-              <input
-                type="checkbox"
-                class="custom-checkbox"
-                name="row4"
-                value="3"
-              />
-            </td>
-            <td>
-              <input
-                type="checkbox"
-                class="custom-checkbox"
-                name="row4"
-                value="4"
-              />
-            </td>
-            <td>
-              <input
-                type="checkbox"
-                class="custom-checkbox"
-                name="row4"
-                value="5"
-              />
-            </td>
-            <td>
-              <input
-                type="checkbox"
-                class="custom-checkbox"
-                name="row4"
-                value="6"
-              />
-            </td>
-            <td>
-              <input
-                type="checkbox"
-                class="custom-checkbox"
-                name="row4"
-                value="7"
-              />
-            </td>
-            <td>
-              <input
-                type="checkbox"
-                class="custom-checkbox"
-                name="row4"
-                value="8"
-              />
-            </td>
-            <td>
-              <input
-                type="checkbox"
-                class="custom-checkbox"
-                name="row4"
-                value="9"
-              />
-            </td>
-            <td>
-              <input
-                type="checkbox"
-                class="custom-checkbox"
-                name="row4"
-                value="10"
-              />
-            </td>
-            <td>
-              <input
-                type="checkbox"
-                class="custom-checkbox"
-                name="row4"
-                value="11"
-              />
-            </td>
-            <td>
-              <input
-                type="checkbox"
-                class="custom-checkbox"
-                name="row4"
-                value="12"
-              />
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- Inventory Cards -->
-    <div class="card-grid">
-      <div id="card1" class="card-box">
-        <input type="number" placeholder="Card" />
-        <button onclick="showCard(this)">Show</button>
-        <div class="card-display"></div>
+    <div class="stat-tracker">
+      <div class="stat-chip-row">
+        <span class="stat-label">
+          <img src="UI/icon_int.png" alt="Intelligence " />
+          Intelligence
+        </span>
+        <div class="chip-container stat-int">
+          <div class="chip-chunk-container">
+            <button class="chip">1</button>
+            <button class="chip">2</button>
+            <button class="chip">3</button>
+          </div>
+          <div class="chip-chunk-container">
+            <button class="chip">4</button>
+            <button class="chip">5</button>
+            <button class="chip">6</button>
+          </div>
+          <div class="chip-chunk-container">
+            <button class="chip">7</button>
+            <button class="chip">8</button>
+            <button class="chip">9</button>
+          </div>
+          <div class="chip-chunk-container">
+            <button class="chip">10</button>
+            <button class="chip">11</button>
+            <button class="chip">12</button>
+          </div>
+        </div>
       </div>
-
-      <div id="card2" class="card-box">
-        <input type="number" placeholder="Card" />
-        <button onclick="showCard(this)">Show</button>
-        <div class="card-display"></div>
+      <div class="stat-chip-row">
+        <span class="stat-label">
+          <img src="UI/icon_dex.png" alt="Dexterity" />
+          Dexterity
+        </span>
+        <div class="chip-container stat-dex">
+          <div class="chip-chunk-container">
+            <button class="chip">1</button>
+            <button class="chip">2</button>
+            <button class="chip">3</button>
+          </div>
+          <div class="chip-chunk-container">
+            <button class="chip">4</button>
+            <button class="chip">5</button>
+            <button class="chip">6</button>
+          </div>
+          <div class="chip-chunk-container">
+            <button class="chip">7</button>
+            <button class="chip">8</button>
+            <button class="chip">9</button>
+          </div>
+          <div class="chip-chunk-container">
+            <button class="chip">10</button>
+            <button class="chip">11</button>
+            <button class="chip">12</button>
+          </div>
+        </div>
       </div>
-
-      <div id="card3" class="card-box">
-        <input type="number" placeholder="Card" />
-        <button onclick="showCard(this)">Show</button>
-        <div class="card-display"></div>
-      </div>
-
-      <div id="card4" class="card-box">
-        <input type="number" placeholder="Card" />
-        <button onclick="showCard(this)">Show</button>
-        <div class="card-display"></div>
-      </div>
-
-      <div id="card5" class="card-box">
-        <input type="number" placeholder="Card" />
-        <button onclick="showCard(this)">Show</button>
-        <div class="card-display"></div>
+      <div class="stat-chip-row">
+        <span class="stat-label">
+          <img src="UI/icon_str.png" alt="Strength" />
+          Strength
+        </span>
+        <div class="chip-container stat-str">
+          <div class="chip-chunk-container">
+            <button class="chip">1</button>
+            <button class="chip">2</button>
+            <button class="chip">3</button>
+          </div>
+          <div class="chip-chunk-container">
+            <button class="chip">4</button>
+            <button class="chip">5</button>
+            <button class="chip">6</button>
+          </div>
+          <div class="chip-chunk-container">
+            <button class="chip">7</button>
+            <button class="chip">8</button>
+            <button class="chip">9</button>
+          </div>
+          <div class="chip-chunk-container">
+            <button class="chip">10</button>
+            <button class="chip">11</button>
+            <button class="chip">12</button>
+          </div>
+        </div>
       </div>
     </div>
 
