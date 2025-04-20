@@ -7,6 +7,18 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <!-- This is ☰ -->
+    <div id="shopMenuIcon" class="shop-icon">&#9776;</div>
+    <div id="shopSidebar" class="shop-sidebar">
+      <button class="close-btn" onclick="toggleShop()">✕</button>
+      <ul>
+        <li><a href="#">Buy Items</a></li>
+        <li><a href="#">Sell Items</a></li>
+        <li><a href="#">Inventory</a></li>
+        <li><a href="#">Exit Shop</a></li>
+      </ul>
+    </div>
+
     <div class="campaign-nav">
       <span id="userChoiceDisplay" style="display: none"></span>
       <button class="campaign-btn" onclick="selectOption('Destinies')">

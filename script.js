@@ -9,6 +9,17 @@ const purpleFaces = dataLibrary.purpleFaces.map((v) => {
 
 const cardFiles = dataLibrary.items;
 
+// Shop menu
+const shopIcon = document.getElementById("shopMenuIcon");
+const shopSidebar = document.getElementById("shopSidebar");
+
+const toggleShop = () => {
+  shopSidebar.classList.toggle("open");
+};
+
+shopIcon.addEventListener("click", toggleShop);
+window.toggleShop = toggleShop;
+
 // Utility function to get random die face
 const getRandomFace = (faces) => {
   const index = Math.floor(Math.random() * faces.length);
@@ -152,4 +163,11 @@ window.addEventListener("DOMContentLoaded", () => {
         `;
       }
     });
+});
+
+// Toggle chip selection on click
+document.querySelectorAll(".chip").forEach((chip) => {
+  chip.addEventListener("click", () => {
+    chip.classList.toggle("selected");
+  });
 });

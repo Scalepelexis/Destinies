@@ -351,6 +351,8 @@ input[type="checkbox"] {
 .chip-container {
   display: flex;
   flex-wrap: wrap;
+  border: 1px solid var(--green-border);
+  border-bottom: 4px solid var(--green-border);
   gap: 10px;
   padding: 0.75rem;
   width: fit-content;
@@ -386,8 +388,8 @@ input[type="checkbox"] {
   align-items: center;
   justify-content: center;
   margin: 0;
-  background: var(--tan-dark);
-  color: var(--dark-green);
+  background: var(--dark-green);
+  color: var(--green-border);
   border: 2px solid var(--green-border);
   font-size: 1rem;
   font-weight: bold;
@@ -432,4 +434,55 @@ input[type="checkbox"] {
   .tracker-item {
     margin: 0.5rem;
   }
+}
+
+.shop-icon {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  font-size: 2rem;
+  z-index: 1001;
+  cursor: url("UI/icon_pointer_yellow.png");
+}
+
+.shop-sidebar {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 250px;
+  height: 100%;
+  background-color: var(--dark-green);
+  color: var(--tan-medium);
+  padding: 1rem;
+  transition: left 0.3s ease;
+  z-index: 1000;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.shop-sidebar.open {
+  left: 0;
+}
+
+.shop-sidebar .close-btn {
+  background: none;
+  border: none;
+  color: var(--tan-medium);
+  font-size: 1.5rem;
+  float: right;
+  cursor: url("UI/icon_pointer_yellow.png");
+}
+
+.shop-sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.shop-sidebar ul li {
+  margin: 1rem 0;
+}
+
+.shop-sidebar ul li a {
+  color: var(--tan-medium);
+  text-decoration: none;
+  font-size: 1.2rem;
 }
