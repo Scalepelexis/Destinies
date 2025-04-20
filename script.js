@@ -18,7 +18,6 @@ const toggleShop = () => {
 };
 
 shopIcon.addEventListener("click", toggleShop);
-window.toggleShop = toggleShop;
 
 let inventory = [];
 
@@ -34,9 +33,6 @@ function addCardToInventory(cardImage) {
   inventory.push(cardImage);
 }
 
-// Example usage:
-window.addCardToInventory = addCardToInventory;
-
 function addCardToShop(cardImage) {
   const shopContainer = document.getElementById("shopCardContainer");
   const card = document.createElement("div");
@@ -45,7 +41,29 @@ function addCardToShop(cardImage) {
 
   shopContainer.appendChild(card);
 }
-window.addCardToShop = addCardToShop;
+
+function handleAddCard() {
+  const input = document.getElementById("cardNumberInput");
+  const number = parseInt(input.value, 10);
+
+  if (isNaN(number) || number < 1 || number > 99) return;
+
+  const prefix = number.toString().padStart(2, "0"); // e.g., 2 => "02"
+  const match = cardFiles.find((file) => file.startsWith(`${prefix}-`));
+
+  if (match) {
+    addCardToInventory(`cards/items/${match}`);
+  } else {
+    alert(`No card found for number ${number}`);
+  }
+}
+
+// Toggle chip selection on click
+document.querySelectorAll(".chip").forEach((chip) => {
+  chip.addEventListener("click", () => {
+    chip.classList.toggle("selected");
+  });
+});
 
 // Utility function to get random die face
 const getRandomFace = (faces) => {
@@ -171,8 +189,6 @@ const populateCharacterDropdown = (campaign) => {
 
   container.style.display = "block";
 };
-// Export to global (for inline HTML use if needed)
-window.selectOption = selectOption;
 
 // DOMContentLoaded init
 window.addEventListener("DOMContentLoaded", () => {
@@ -207,27 +223,15 @@ window.addEventListener("DOMContentLoaded", () => {
         `;
       }
     });
+
+  document
+    .getElementById("addCardBtn")
+    ?.addEventListener("click", handleAddCard);
 });
 
-function handleAddCard() {
-  const input = document.getElementById("cardNumberInput");
-  const number = parseInt(input.value, 10);
-
-  if (isNaN(number) || number < 1 || number > 99) return;
-
-  const prefix = number.toString().padStart(2, "0"); // e.g., 2 => "02"
-  const match = cardFiles.find((file) => file.startsWith(`${prefix}-`));
-
-  if (match) {
-    addCardToInventory(`cards/items/${match}`);
-  } else {
-    alert(`No card found for number ${number}`);
-  }
-}
-
-// Toggle chip selection on click
-document.querySelectorAll(".chip").forEach((chip) => {
-  chip.addEventListener("click", () => {
-    chip.classList.toggle("selected");
-  });
-});
+// Export to global (for inline HTML use if needed)
+window.selectOption = selectOption;
+window.addCardToShop = addCardToShop;
+window.addCardToInventory = addCardToInventory;
+window.toggleShop = toggleShop;
+window.handleAddCard = handleAddCard;
