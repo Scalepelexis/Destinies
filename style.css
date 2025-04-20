@@ -529,3 +529,20 @@ input[type="checkbox"] {
   background-size: cover;
   background-position: center;
 }
+
+.card-input-container {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.card-input-container input {
+  width: 200px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 2px solid var(--green-border);
+  background-color: var(--dark-green);
+  color: var(--tan-medium);
+}

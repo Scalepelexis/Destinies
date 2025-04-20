@@ -209,6 +209,22 @@ window.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+function handleAddCard() {
+  const input = document.getElementById("cardNumberInput");
+  const number = parseInt(input.value, 10);
+
+  if (isNaN(number) || number < 1 || number > 99) return;
+
+  const prefix = number.toString().padStart(2, "0"); // e.g., 2 => "02"
+  const match = cardFiles.find((file) => file.startsWith(`${prefix}-`));
+
+  if (match) {
+    addCardToInventory(`cards/items/${match}`);
+  } else {
+    alert(`No card found for number ${number}`);
+  }
+}
+
 // Toggle chip selection on click
 document.querySelectorAll(".chip").forEach((chip) => {
   chip.addEventListener("click", () => {

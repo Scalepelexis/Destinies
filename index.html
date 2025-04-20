@@ -10,7 +10,7 @@
     <!-- This is ☰ -->
     <div id="shopMenuIcon" class="shop-icon">&#9776;</div>
     <div id="shopSidebar" class="shop-sidebar">
-      <button class="close-btn" onclick="toggleShop()">✕</button>
+      <button class="close-btn" onclick="toggleShop()"></button>
       <div id="shopCardContainer" class="card-slot-container"></div>
     </div>
 
@@ -236,6 +236,18 @@
     <!-- Inventory Section -->
     <div id="inventorySection" class="inventory-container">
       <div>Inventory</div>
+      <!-- Add Card by Number -->
+      <div id="cardInputSection" class="card-input-container">
+        <input
+          type="number"
+          id="cardNumberInput"
+          min="1"
+          max="99"
+          placeholder="Enter card number (e.g. 2)"
+        />
+        <button onclick="handleAddCard()">Add Card</button>
+      </div>
+
       <div id="inventoryCards" class="card-slot-container"></div>
     </div>
 
