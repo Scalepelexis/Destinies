@@ -25,11 +25,29 @@ function addCardToInventory(cardImage) {
   if (inventory.length >= 7) return;
 
   const container = document.getElementById("inventoryCards");
-  const card = document.createElement("div");
-  card.className = "card-slot";
-  card.style.backgroundImage = `url(${cardImage})`;
 
-  container.appendChild(card);
+  const cardWrapper = document.createElement("div");
+  cardWrapper.className = "card-wrapper";
+
+  const img = document.createElement("img");
+  img.src = `${cardImage}.gif`;
+  img.className = "card-img";
+  img.alt = "Card";
+
+  const removeBtn = document.createElement("button");
+  removeBtn.className = "remove-card-btn";
+  removeBtn.innerHTML = "✖";
+  removeBtn.title = "Remove card";
+
+  removeBtn.addEventListener("click", () => {
+    container.removeChild(cardWrapper);
+    inventory = inventory.filter((img) => img !== cardImage);
+  });
+
+  cardWrapper.appendChild(removeBtn);
+  cardWrapper.appendChild(img);
+  container.appendChild(cardWrapper);
+
   inventory.push(cardImage);
 }
 
@@ -46,13 +64,15 @@ function handleAddCard() {
   const input = document.getElementById("cardNumberInput");
   const number = parseInt(input.value, 10);
 
-  if (isNaN(number) || number < 1 || number > 99) return;
+  if (isNaN(number) || number < 1) return;
 
-  const prefix = number.toString().padStart(2, "0"); // e.g., 2 => "02"
+  const prefix = number < 10 ? `0${number}` : `${number}`;
   const match = cardFiles.find((file) => file.startsWith(`${prefix}-`));
 
   if (match) {
-    addCardToInventory(`cards/items/${match}`);
+    const baseName = match.replace(/\.gif$/i, "");
+    addCardToInventory(`cards/items/${baseName}`);
+    console.log("Trying to load:", `cards/items/${match}`);
   } else {
     alert(`No card found for number ${number}`);
   }

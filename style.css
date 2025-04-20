@@ -521,13 +521,14 @@ input[type="checkbox"] {
 }
 
 .card-slot {
-  width: 100px;
-  height: 140px;
-  background-color: var(--tan-dark);
-  border: 2px solid var(--green-border);
-  border-radius: 10px;
+  height: min(20vw, 300px); /* Max width: 150px, scales with screen */
+  width: calc(min(20vw, 300px) * 1.4); /* Keep a good card aspect ratio */
+  background-color: var(--dark-green);
+  border: 2px solid var(--red-banner);
   background-size: cover;
   background-position: center;
+  transition: transform 0.2s;
+  padding: 24px;
 }
 
 .card-input-container {
@@ -545,4 +546,36 @@ input[type="checkbox"] {
   border: 2px solid var(--green-border);
   background-color: var(--dark-green);
   color: var(--tan-medium);
+}
+
+.card-wrapper {
+  position: relative;
+  width: min(20vw, 250px);
+}
+
+.card-img {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+  border: 2px solid var(--red-banner);
+  display: block;
+}
+
+.remove-card-btn {
+  position: absolute;
+  top: 16px;
+  left: 20px;
+  background-color: var(--red-banner);
+  color: var(--tan-medium);
+  border: 2px solid var(--tan-medium);
+  border-radius: 25%;
+  width: 24px;
+  height: 24px;
+  font-size: 10px;
+  cursor: url("UI/icon_pointer_orange.png"), auto;
+  z-index: 2;
+}
+
+.remove-card-btn:hover {
+  background-color: #922;
 }
