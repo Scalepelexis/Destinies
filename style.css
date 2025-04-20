@@ -5,6 +5,7 @@
   --tan-dark: #c48f60;
   --purple-dark: #4c2845;
   --red-banner: #621717;
+  cursor: url("UI/icon_pointer_small.png"), auto;
 }
 
 body {
@@ -25,7 +26,7 @@ body {
   min-height: 100vh; /* ensure it covers full screen height */
   color: var(--tan-medium); /* default text color for contrast */
 
-  cursor: url("UI/icon_pointer.png"), auto;
+  cursor: url("UI/icon_pointer_small.png"), auto;
 }
 
 .header-row {
@@ -118,7 +119,7 @@ button {
   border-radius: 5px;
   background-color: var(--red-banner);
   color: var(--tan-medium);
-  cursor: url("UI/icon_pointer_yellow.png");
+  cursor: url("UI/icon_pointer_orange.png"), auto;
   margin: 0.25rem auto 1rem; /* top: 0, left/right: auto, bottom: 1rem */
 }
 
@@ -129,6 +130,7 @@ button:hover {
 input[type="checkbox"] {
   margin-top: 0.5rem;
   transform: scale(1.3);
+  cursor: url("UI/icon_pointer_orange.png"), auto;
 }
 
 .tracker-summary {
@@ -189,7 +191,7 @@ input[type="checkbox"] {
   border: 2px solid var(--green-border);
   border-radius: 50%;
   background-color: var(--dark-green); /* <-- background when unchecked */
-  cursor: url("UI/icon_pointer_black.png");
+  cursor: url("UI/icon_pointer_orange.png"), auto;
   position: relative;
 }
 
@@ -220,7 +222,7 @@ input[type="checkbox"] {
 .custom-number-input button {
   padding: 6px;
   font-size: 12px;
-  cursor: url("UI/icon_pointer_black.png");
+  cursor: url("UI/icon_pointer_orange.png"), auto;
 }
 
 .increment {
@@ -237,6 +239,17 @@ input[type="checkbox"] {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.display-value {
+  width: 30px;
+  height: 50px;
+  line-height: 50px;
+  background-color: var(--tan-dark);
+  color: var(--dark-green);
+  text-align: center;
+  border: 2px solid var(--green-border);
+  font-weight: bold;
 }
 
 .campaign-nav {
@@ -263,7 +276,7 @@ input[type="checkbox"] {
   border: none;
   padding: 0;
   margin: 0.25rem;
-  cursor: url("UI/icon_pointer_yellow.png");
+  cursor: url("UI/icon_pointer_orange.png"), auto;
   transition: transform 0.2s;
 }
 
@@ -351,8 +364,8 @@ input[type="checkbox"] {
 .chip-container {
   display: flex;
   flex-wrap: wrap;
-  border: 1px solid var(--green-border);
-  border-bottom: 4px solid var(--green-border);
+  border: 1px solid var(--dark-green);
+  border-bottom: 4px solid var(--dark-green);
   gap: 10px;
   padding: 0.75rem;
   width: fit-content;
@@ -393,7 +406,7 @@ input[type="checkbox"] {
   border: 2px solid var(--green-border);
   font-size: 1rem;
   font-weight: bold;
-  cursor: pointer;
+  cursor: pointer, auto;
   user-select: none;
   transition: background 0.2s ease;
 }
@@ -416,7 +429,7 @@ input[type="checkbox"] {
 #changeSelectionBtn {
   margin-top: 10px;
   font-size: 16px;
-  cursor: url("UI/icon_pointer_black.png");
+  cursor: url("UI/icon_pointer_orange.png"), auto;
 }
 
 #rollDiceBtn {
@@ -442,25 +455,30 @@ input[type="checkbox"] {
   left: 1rem;
   font-size: 2rem;
   z-index: 1001;
-  cursor: url("UI/icon_pointer_yellow.png");
+  cursor: url("UI/icon_pointer_orange.png"), auto;
 }
 
 .shop-sidebar {
   position: fixed;
   top: 0;
-  left: -250px;
+  left: 0;
   width: 250px;
   height: 100%;
   background-color: var(--dark-green);
   color: var(--tan-medium);
   padding: 1rem;
-  transition: left 0.3s ease;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
   z-index: 1000;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+  opacity: 0;
 }
 
 .shop-sidebar.open {
-  left: 0;
+  transform: translateX(0);
+  pointer-events: auto;
+  opacity: 1;
 }
 
 .shop-sidebar .close-btn {
@@ -469,7 +487,7 @@ input[type="checkbox"] {
   color: var(--tan-medium);
   font-size: 1.5rem;
   float: right;
-  cursor: url("UI/icon_pointer_yellow.png");
+  cursor: url("UI/icon_pointer_orange.png"), auto;
 }
 
 .shop-sidebar ul {

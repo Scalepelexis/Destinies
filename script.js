@@ -58,12 +58,19 @@ const rollDice = () => {
 // Increment/Decrement tracker inputs
 const setupNumberControls = () => {
   document.querySelectorAll(".custom-number-input").forEach((container) => {
-    const input = container.querySelector('input[type="number"]');
+    const display = container.querySelector(".display-value");
     const increment = container.querySelector(".increment");
     const decrement = container.querySelector(".decrement");
 
-    increment.addEventListener("click", () => input.stepUp());
-    decrement.addEventListener("click", () => input.stepDown());
+    increment.addEventListener("click", () => {
+      let current = parseInt(display.textContent, 10);
+      display.textContent = current + 1;
+    });
+
+    decrement.addEventListener("click", () => {
+      let current = parseInt(display.textContent, 10);
+      if (current > 0) display.textContent = current - 1;
+    });
   });
 };
 
