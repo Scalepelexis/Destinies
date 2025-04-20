@@ -64,12 +64,22 @@ const setupNumberControls = () => {
 
     increment.addEventListener("click", () => {
       let current = parseInt(display.textContent, 10);
-      display.textContent = current + 1;
+
+      // Cap at 3 if this is the refreshValue element
+      if (display.id === "refreshValue") {
+        if (current < 3) {
+          display.textContent = current + 1;
+        }
+      } else {
+        display.textContent = current + 1;
+      }
     });
 
     decrement.addEventListener("click", () => {
       let current = parseInt(display.textContent, 10);
-      if (current > 0) display.textContent = current - 1;
+      if (current > 0) {
+        display.textContent = current - 1;
+      }
     });
   });
 };
