@@ -11,6 +11,44 @@
     <div id="shopMenuIcon" class="shop-icon">&#9776;</div>
     <div id="shopSidebar" class="shop-sidebar">
       <button class="close-btn" onclick="toggleShop()"></button>
+
+      <!-- Trade Stack Section -->
+      <div id="tradeStackSection" style="margin-top: 2rem">
+        <button id="createTradeStackBtn">Create Trade Stack</button>
+
+        <div
+          id="tradeStackInputContainer"
+          style="margin-top: 1rem; display: none"
+        >
+          <input
+            id="tradeStackNameInput"
+            type="text"
+            placeholder="Enter stack name (e.g. Smithy, Witch Deal)"
+            style="
+              width: 90%;
+              padding: 0.5rem;
+              font-size: 1rem;
+              margin-bottom: 0.5rem;
+            "
+          />
+          <input
+            id="tradeInput"
+            type="text"
+            placeholder="Enter item numbers (e.g. 01,15,66)"
+            style="width: 90%; padding: 0.5rem; font-size: 1rem"
+          />
+          <button id="submitTradeStack">Submit</button>
+        </div>
+
+        <div id="allTradeStacks" style="margin-top: 1rem"></div>
+
+        <!-- Hover Preview -->
+        <div
+          id="tradePreview"
+          style="margin-top: 1rem; text-align: center"
+        ></div>
+      </div>
+
       <div id="shopCardContainer" class="card-slot-container"></div>
     </div>
 

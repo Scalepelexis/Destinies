@@ -1,5 +1,12 @@
 import { dataLibrary } from "./lib.js";
 
+// Map item numbers to names
+const itemNameMap = {};
+dataLibrary.items.forEach((file) => {
+  const [num, ...nameParts] = file.split("-");
+  itemNameMap[num] = nameParts.join("-"); // handles hyphenated names
+});
+
 // Use dice face values from dataLibrary
 const whiteFaces = dataLibrary.whiteFaces.map((v) => `wd${v}.png`);
 const purpleFaces = dataLibrary.purpleFaces.map((v) => {
@@ -247,6 +254,83 @@ window.addEventListener("DOMContentLoaded", () => {
   document
     .getElementById("addCardBtn")
     ?.addEventListener("click", handleAddCard);
+
+  // Trade stack logic
+  const tradeStackNameInput = document.getElementById("tradeStackNameInput");
+  const submitTradeStackBtn = document.getElementById("submitTradeStack");
+  const tradeInput = document.getElementById("tradeInput");
+  const allTradeStacks = document.getElementById("allTradeStacks");
+  const tradePreview = document.getElementById("tradePreview");
+
+  createTradeStackBtn.addEventListener("click", () => {
+    tradeStackInputContainer.style.display = "block";
+  });
+
+  submitTradeStackBtn.addEventListener("click", () => {
+    const name = tradeStackNameInput.value.trim();
+    const rawInput = tradeInput.value;
+    const numbers = rawInput.split(",").map((n) => n.trim().padStart(2, "0"));
+
+    if (!name || numbers.length === 0) return;
+
+    const container = document.createElement("div");
+    container.style.marginBottom = "1rem";
+
+    const header = document.createElement("div");
+    header.textContent = name;
+    header.style.cursor = "pointer";
+    header.style.backgroundColor = "#333";
+    header.style.color = "#fdc17e";
+    header.style.padding = "0.5rem";
+    header.style.borderRadius = "6px";
+    header.style.fontWeight = "bold";
+    header.style.marginBottom = "0.5rem";
+
+    const list = document.createElement("ul");
+    list.style.display = "none";
+    list.style.listStyle = "none";
+    list.style.paddingLeft = "1rem";
+
+    numbers.forEach((num) => {
+      const itemName = itemNameMap[num];
+      if (!itemName) return;
+
+      const li = document.createElement("li");
+      li.textContent = itemName.replace(/_/g, " ");
+      li.style.cursor = "pointer";
+      li.style.padding = "4px";
+
+      li.addEventListener("mouseenter", () => {
+        tradePreview.innerHTML = `
+          <img 
+            src="cards/items/${num}-${itemName}.gif" 
+            alt="${itemName}" 
+            class="card-img"
+          />
+        `;
+      });
+
+      li.addEventListener("mouseleave", () => {
+        tradePreview.innerHTML = "";
+      });
+
+      list.appendChild(li);
+    });
+
+    // Toggle visibility on header click
+    header.addEventListener("click", () => {
+      list.style.display = list.style.display === "none" ? "block" : "none";
+    });
+
+    container.appendChild(header);
+    container.appendChild(list);
+    allTradeStacks.appendChild(container);
+
+    // Reset input fields
+    tradeStackNameInput.value = "";
+    tradeInput.value = "";
+    tradeStackInputContainer.style.display = "none";
+  });
 });
 
 // Export to global (for inline HTML use if needed)
