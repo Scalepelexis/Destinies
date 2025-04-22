@@ -281,11 +281,11 @@ window.addEventListener("DOMContentLoaded", () => {
       const name = tradeStackNameInput.value.trim();
       const rawInput = tradeInput.value;
       const numbers = rawInput.split(",").map((n) => n.trim().padStart(2, "0"));
-
-      if (!name || numbers.length === 0) return;
-
+      const list = document.createElement("ul");
       const container = document.createElement("div");
       const header = document.createElement("div");
+      
+      if (!name || numbers.length === 0) return;
 
       container.className = "ts-container";
       header.className = "ts-header";
@@ -293,7 +293,7 @@ window.addEventListener("DOMContentLoaded", () => {
       li.className = "ts-list-item";
       nameSpan.className = "ts-name";
 
-      const list = document.createElement("ul");
+      
       list.style.display = "none";
       list.style.listStyle = "none";
       list.style.paddingLeft = "1rem";
