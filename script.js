@@ -281,15 +281,15 @@ window.addEventListener("DOMContentLoaded", () => {
       const rawInput = tradeInput.value;
       const numbers = rawInput.split(",").map((n) => n.trim().padStart(2, "0"));
       const list = document.createElement("ul");
-      const container = document.createElement("div");
-      const header = document.createElement("div");
       
       if (!name || numbers.length === 0) return;
-
+    
+      const container = document.createElement("div");
       container.className = "ts-container";
-      header.className = "ts-header";
       
-     
+      const header = document.createElement("div");
+      header.className = "ts-header";
+      header.textContent = name;
 
       list.className = "ts-list";
 
