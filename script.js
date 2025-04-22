@@ -289,29 +289,21 @@ window.addEventListener("DOMContentLoaded", () => {
 
       container.className = "ts-container";
       header.className = "ts-header";
-      list.className = "ts-list";
-      li.className = "ts-list-item";
-      nameSpan.className = "ts-name";
-
       
-      list.style.display = "none";
-      list.style.listStyle = "none";
-      list.style.paddingLeft = "1rem";
+     
+
+      list.className = "ts-list";
 
       numbers.forEach((num) => {
         const itemName = itemNameMap[num];
         if (!itemName) return;
 
         const li = document.createElement("li");
-        li.style.display = "flex";
-        li.style.justifyContent = "space-between";
-        li.style.alignItems = "center";
-        li.style.padding = "4px";
-        li.style.cursor = "default";
+        li.className = "ts-list-item";
 
         const nameSpan = document.createElement("span");
         nameSpan.textContent = itemName.replace(/_/g, " ");
-        nameSpan.style.cursor = "pointer";
+         nameSpan.className = "ts-name";
         nameSpan.addEventListener("mouseenter", () => {
           tradePreview.innerHTML = `
             <img 
