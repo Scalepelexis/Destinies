@@ -12,281 +12,304 @@
     <div id="shopSidebar" class="shop-sidebar">
       <button class="close-btn" onclick="toggleShop()"></button>
 
-      <!-- Trade Stack Section -->
-      <div id="tradeStackSection" style="margin-top: 2rem">
-        <button id="createTradeStackBtn">Create Trade Stack</button>
+      <!-- Folder Structure for Shop Sidebar -->
+      <div class="shop-folder">
+        <!-- Trade Stacks Folder -->
+        <div class="folder">
+          <div
+            class="folder-header"
+            onclick="toggleFolder('tradeFolderContent')"
+          >
+            + Traders
+          </div>
+          <div id="tradeFolderContent" class="folder-content">
+            <!-- (Insert your existing Trade Stack UI here) -->
+            <button id="createTradeStackBtn" class="sidebarBtn">Add</button>
 
-        <div
-          id="tradeStackInputContainer"
-          style="margin-top: 1rem; display: none"
-        >
-          <input
-            id="tradeStackNameInput"
-            type="text"
-            placeholder="Enter stack name (e.g. Smithy, Witch Deal)"
-            style="
-              width: 90%;
-              padding: 0.5rem;
-              font-size: 1rem;
-              margin-bottom: 0.5rem;
-            "
-          />
-          <input
-            id="tradeInput"
-            type="text"
-            placeholder="Enter item numbers (e.g. 01,15,66)"
-            style="width: 90%; padding: 0.5rem; font-size: 1rem"
-          />
-          <button id="submitTradeStack">Submit</button>
+            <div id="tradeStackInputContainer" class="trade-stack-input hidden">
+              <input
+                id="tradeStackNameInput"
+                type="text"
+                placeholder="Trader Name"
+              />
+              <input
+                id="tradeInput"
+                type="text"
+                placeholder="Item #s (e.g. 1,15,66)"
+              />
+              <button id="submitTradeStack">Submit</button>
+            </div>
+
+            <div id="allTradeStacks"></div>
+            <div id="tradePreview"></div>
+          </div>
         </div>
 
-        <div id="allTradeStacks" style="margin-top: 1rem"></div>
-
-        <!-- Hover Preview -->
-        <div
-          id="tradePreview"
-          style="margin-top: 1rem; text-align: center"
-        ></div>
+        <!-- Character Cards Folder -->
+        <div class="folder">
+          <div
+            class="folder-header"
+            onclick="toggleFolder('characterFolderContent')"
+          >
+            + Characters
+          </div>
+          <div id="characterFolderContent" class="folder-content">
+            <!-- (Insert your existing Character Add UI here) -->
+            <input
+              id="characterNameInput"
+              type="text"
+              placeholder="Character Name"
+            />
+            <button id="addCharacterCardBtn" class="sidebarBtn">Add</button>
+            <ul id="characterCardList"></ul>
+            <div id="characterCardPreview"></div>
+          </div>
+        </div>
       </div>
 
       <div id="shopCardContainer" class="card-slot-container"></div>
     </div>
 
-    <div class="campaign-nav">
-      <span id="userChoiceDisplay" style="display: none"></span>
-      <button class="campaign-btn" onclick="selectOption('Destinies')">
-        <img src="UI/title_des.png" alt="Destinies" />
-      </button>
-      <button class="campaign-btn" onclick="selectOption('Witchwood')">
-        <img src="UI/title_wtw.png" alt="Witchwood" />
-      </button>
-      <button class="campaign-btn" onclick="selectOption('Sea_of_Sand')">
-        <img src="UI/title_sos.png" alt="Sea of Sand" />
-      </button>
-      <button class="campaign-btn" onclick="selectOption('Myth_and_Folklore')">
-        <img src="UI/title_maf.png" alt="Myth and Folklore" />
-      </button>
-      <button class="campaign-btn" onclick="selectOption('All_That_Glitters')">
-        <img src="UI/title_atg.png" alt="All That Glitters" />
-      </button>
-    </div>
-
-    <div class="header-row">
-      <img src="UI/destinies_logo.png" />
-      <div id="characterCardContainer" class="character-card-container">
-        <!-- Character card image will go here -->
+    <div class="mainPage">
+      <div class="campaign-nav">
+        <span id="userChoiceDisplay" class="hidden"></span>
+        <button class="campaign-btn" onclick="selectOption('Destinies')">
+          <img src="UI/title_des.png" alt="Destinies" />
+        </button>
+        <button class="campaign-btn" onclick="selectOption('Witchwood')">
+          <img src="UI/title_wtw.png" alt="Witchwood" />
+        </button>
+        <button class="campaign-btn" onclick="selectOption('Sea_of_Sand')">
+          <img src="UI/title_sos.png" alt="Sea of Sand" />
+        </button>
+        <button
+          class="campaign-btn"
+          onclick="selectOption('Myth_and_Folklore')"
+        >
+          <img src="UI/title_maf.png" alt="Myth and Folklore" />
+        </button>
+        <button
+          class="campaign-btn"
+          onclick="selectOption('All_That_Glitters')"
+        >
+          <img src="UI/title_atg.png" alt="All That Glitters" />
+        </button>
       </div>
 
-      <div
-        id="characterDropdownContainer"
-        style="display: none; margin-bottom: 2rem"
-      >
-        <label for="characterSelect">Character:</label>
-        <select id="characterSelect">
-          <option value="">-- Select a character --</option>
-        </select>
+      <div class="header-row">
+        <img src="UI/destinies_logo.png" />
+        <div id="characterCardContainer" class="character-card-container">
+          <!-- Character card image will go here -->
+        </div>
+
+        <div id="characterDropdownContainer" class="hidden">
+          <label for="characterSelect">Character:</label>
+          <select id="characterSelect">
+            <option value="">-- Select a character --</option>
+          </select>
+        </div>
       </div>
-    </div>
-    <div class="wrapper-dice-and-currency">
-      <div class="dice-wrapper">
-        <div class="unified-row">
-          <!-- White Dice -->
-          <div class="dice-row">
-            <div class="die-block">
-              <img
-                class="die white-die"
-                id="white-die1"
-                src="UI/dice/wd1.png"
-                alt="White Die 1"
-              />
+      <div class="wrapper-dice-and-currency">
+        <div class="dice-wrapper">
+          <div class="unified-row">
+            <!-- White Dice -->
+            <div class="dice-row">
+              <div class="die-block">
+                <img
+                  class="die white-die"
+                  id="white-die1"
+                  src="UI/dice/wd1.png"
+                  alt="White Die 1"
+                />
+              </div>
+              <div class="die-block">
+                <img
+                  class="die white-die"
+                  id="white-die2"
+                  src="UI/dice/wd2.png"
+                  alt="White Die 2"
+                />
+              </div>
             </div>
-            <div class="die-block">
-              <img
-                class="die white-die"
-                id="white-die2"
-                src="UI/dice/wd2.png"
-                alt="White Die 2"
-              />
+
+            <!-- Purple Dice -->
+            <div class="dice-row">
+              <div class="die-block">
+                <img
+                  class="die purple-die"
+                  id="purple-die1"
+                  src="UI/dice/pd1.png"
+                  alt="Purple Die 1"
+                />
+                <input type="checkbox" class="custom-checkbox" value="1" />
+              </div>
+              <div class="die-block">
+                <img
+                  class="die purple-die"
+                  id="purple-die2"
+                  src="UI/dice/pd2.png"
+                  alt="Purple Die 2"
+                />
+                <input type="checkbox" class="custom-checkbox" value="2" />
+              </div>
+              <div class="die-block">
+                <img
+                  class="die purple-die"
+                  id="purple-die3"
+                  src="UI/dice/pd3.png"
+                  alt="Purple Die 3"
+                />
+                <input type="checkbox" class="custom-checkbox" value="3" />
+              </div>
             </div>
           </div>
 
-          <!-- Purple Dice -->
-          <div class="dice-row">
-            <div class="die-block">
-              <img
-                class="die purple-die"
-                id="purple-die1"
-                src="UI/dice/pd1.png"
-                alt="Purple Die 1"
-              />
-              <input type="checkbox" class="custom-checkbox" value="1" />
-            </div>
-            <div class="die-block">
-              <img
-                class="die purple-die"
-                id="purple-die2"
-                src="UI/dice/pd2.png"
-                alt="Purple Die 2"
-              />
-              <input type="checkbox" class="custom-checkbox" value="2" />
-            </div>
-            <div class="die-block">
-              <img
-                class="die purple-die"
-                id="purple-die3"
-                src="UI/dice/pd3.png"
-                alt="Purple Die 3"
-              />
-              <input type="checkbox" class="custom-checkbox" value="3" />
-            </div>
+          <div>
+            <button id="rollDiceBtn">Roll Dice</button>
           </div>
         </div>
 
-        <div>
-          <button id="rollDiceBtn">Roll Dice</button>
-        </div>
-      </div>
-
-      <!-- Value Stats -->
-      <div class="tracker-summary">
-        <div class="tracker-item">
-          <img src="UI/icon_gold.png" alt="Gold" />
-          <div class="custom-number-input">
-            <div class="display-value" id="goldValue">0</div>
-            <div class="vertical-buttons">
-              <button type="button" class="increment">▲</button>
-              <button type="button" class="decrement">▼</button>
+        <!-- Value Stats -->
+        <div class="tracker-summary">
+          <div class="tracker-item">
+            <img src="UI/icon_gold.png" alt="Gold" />
+            <div class="custom-number-input">
+              <div class="display-value" id="goldValue">0</div>
+              <div class="vertical-buttons">
+                <button type="button" class="increment">▲</button>
+                <button type="button" class="decrement">▼</button>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="tracker-item">
-          <img src="UI/icon_experience.png" alt="Experience" />
-          <div class="custom-number-input">
-            <div class="display-value" id="expValue">0</div>
-            <div class="vertical-buttons">
-              <button type="button" class="increment">▲</button>
-              <button type="button" class="decrement">▼</button>
+          <div class="tracker-item">
+            <img src="UI/icon_experience.png" alt="Experience" />
+            <div class="custom-number-input">
+              <div class="display-value" id="expValue">0</div>
+              <div class="vertical-buttons">
+                <button type="button" class="increment">▲</button>
+                <button type="button" class="decrement">▼</button>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="tracker-item">
-          <img src="UI/icon_refresh_dice.png" alt="Refresh Die" />
-          <div class="custom-number-input">
-            <div class="display-value" id="refreshValue">0</div>
-            <div class="vertical-buttons">
-              <button type="button" class="increment">▲</button>
-              <button type="button" class="decrement">▼</button>
+          <div class="tracker-item">
+            <img src="UI/icon_refresh_dice.png" alt="Refresh Die" />
+            <div class="custom-number-input">
+              <div class="display-value" id="refreshValue">0</div>
+              <div class="vertical-buttons">
+                <button type="button" class="increment">▲</button>
+                <button type="button" class="decrement">▼</button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <!-- Stats Tracker -->
-    <div class="stat-tracker">
-      <div class="stat-chip-row">
-        <span class="stat-label">
-          <img src="UI/icon_int.png" alt="Intelligence " />
-          Intelligence
-        </span>
-        <div class="chip-container stat-int">
-          <div class="chip-chunk-container">
-            <button class="chip">1</button>
-            <button class="chip">2</button>
-            <button class="chip">3</button>
-          </div>
-          <div class="chip-chunk-container">
-            <button class="chip">4</button>
-            <button class="chip">5</button>
-            <button class="chip">6</button>
-          </div>
-          <div class="chip-chunk-container">
-            <button class="chip">7</button>
-            <button class="chip">8</button>
-            <button class="chip">9</button>
-          </div>
-          <div class="chip-chunk-container">
-            <button class="chip">10</button>
-            <button class="chip">11</button>
-            <button class="chip">12</button>
-          </div>
-        </div>
-      </div>
-      <div class="stat-chip-row">
-        <span class="stat-label">
-          <img src="UI/icon_dex.png" alt="Dexterity" />
-          Dexterity
-        </span>
-        <div class="chip-container stat-dex">
-          <div class="chip-chunk-container">
-            <button class="chip">1</button>
-            <button class="chip">2</button>
-            <button class="chip">3</button>
-          </div>
-          <div class="chip-chunk-container">
-            <button class="chip">4</button>
-            <button class="chip">5</button>
-            <button class="chip">6</button>
-          </div>
-          <div class="chip-chunk-container">
-            <button class="chip">7</button>
-            <button class="chip">8</button>
-            <button class="chip">9</button>
-          </div>
-          <div class="chip-chunk-container">
-            <button class="chip">10</button>
-            <button class="chip">11</button>
-            <button class="chip">12</button>
+      <!-- Stats Tracker -->
+      <div class="stat-tracker">
+        <div class="stat-chip-row">
+          <span class="stat-label">
+            <img src="UI/icon_int.png" alt="Intelligence " />
+            Intelligence
+          </span>
+          <div class="chip-container stat-int">
+            <div class="chip-chunk-container">
+              <button class="chip">1</button>
+              <button class="chip">2</button>
+              <button class="chip">3</button>
+            </div>
+            <div class="chip-chunk-container">
+              <button class="chip">4</button>
+              <button class="chip">5</button>
+              <button class="chip">6</button>
+            </div>
+            <div class="chip-chunk-container">
+              <button class="chip">7</button>
+              <button class="chip">8</button>
+              <button class="chip">9</button>
+            </div>
+            <div class="chip-chunk-container">
+              <button class="chip">10</button>
+              <button class="chip">11</button>
+              <button class="chip">12</button>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="stat-chip-row">
-        <span class="stat-label">
-          <img src="UI/icon_str.png" alt="Strength" />
-          Strength
-        </span>
-        <div class="chip-container stat-str">
-          <div class="chip-chunk-container">
-            <button class="chip">1</button>
-            <button class="chip">2</button>
-            <button class="chip">3</button>
-          </div>
-          <div class="chip-chunk-container">
-            <button class="chip">4</button>
-            <button class="chip">5</button>
-            <button class="chip">6</button>
-          </div>
-          <div class="chip-chunk-container">
-            <button class="chip">7</button>
-            <button class="chip">8</button>
-            <button class="chip">9</button>
-          </div>
-          <div class="chip-chunk-container">
-            <button class="chip">10</button>
-            <button class="chip">11</button>
-            <button class="chip">12</button>
+        <div class="stat-chip-row">
+          <span class="stat-label">
+            <img src="UI/icon_dex.png" alt="Dexterity" />
+            Dexterity
+          </span>
+          <div class="chip-container stat-dex">
+            <div class="chip-chunk-container">
+              <button class="chip">1</button>
+              <button class="chip">2</button>
+              <button class="chip">3</button>
+            </div>
+            <div class="chip-chunk-container">
+              <button class="chip">4</button>
+              <button class="chip">5</button>
+              <button class="chip">6</button>
+            </div>
+            <div class="chip-chunk-container">
+              <button class="chip">7</button>
+              <button class="chip">8</button>
+              <button class="chip">9</button>
+            </div>
+            <div class="chip-chunk-container">
+              <button class="chip">10</button>
+              <button class="chip">11</button>
+              <button class="chip">12</button>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-
-    <!-- Inventory Section -->
-    <div id="inventorySection" class="inventory-container">
-      <div>Inventory</div>
-      <!-- Add Card by Number -->
-      <div id="cardInputSection" class="card-input-container">
-        <input
-          type="number"
-          id="cardNumberInput"
-          min="1"
-          max="99"
-          placeholder="Enter card number (e.g. 2)"
-        />
-        <button id="addCardBtn">Add Card</button>
+        <div class="stat-chip-row">
+          <span class="stat-label">
+            <img src="UI/icon_str.png" alt="Strength" />
+            Strength
+          </span>
+          <div class="chip-container stat-str">
+            <div class="chip-chunk-container">
+              <button class="chip">1</button>
+              <button class="chip">2</button>
+              <button class="chip">3</button>
+            </div>
+            <div class="chip-chunk-container">
+              <button class="chip">4</button>
+              <button class="chip">5</button>
+              <button class="chip">6</button>
+            </div>
+            <div class="chip-chunk-container">
+              <button class="chip">7</button>
+              <button class="chip">8</button>
+              <button class="chip">9</button>
+            </div>
+            <div class="chip-chunk-container">
+              <button class="chip">10</button>
+              <button class="chip">11</button>
+              <button class="chip">12</button>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div id="inventoryCards" class="card-slot-container"></div>
+      <!-- Inventory Section -->
+      <div id="inventorySection" class="inventory-container">
+        <div>Inventory</div>
+        <!-- Add Card by Number -->
+        <div id="cardInputSection" class="card-input-container">
+          <input
+            type="number"
+            id="cardNumberInput"
+            min="1"
+            max="99"
+            placeholder="Enter card number (e.g. 2)"
+          />
+          <button id="addCardBtn">Add Card</button>
+        </div>
+
+        <div id="inventoryCards" class="card-slot-container"></div>
+      </div>
     </div>
 
     <script type="module" src="script.js"></script>

@@ -85,6 +85,11 @@ function handleAddCard() {
   }
 }
 
+function toggleFolder(folderId) {
+  const content = document.getElementById(folderId);
+  content.classList.toggle("open");
+}
+
 // Toggle chip selection on click
 document.querySelectorAll(".chip").forEach((chip) => {
   chip.addEventListener("click", () => {
@@ -263,73 +268,142 @@ window.addEventListener("DOMContentLoaded", () => {
   const tradePreview = document.getElementById("tradePreview");
 
   createTradeStackBtn.addEventListener("click", () => {
-    tradeStackInputContainer.style.display = "block";
+    const inputContainer = document.getElementById("tradeStackInputContainer");
+    inputContainer.classList.remove("hidden");
+    inputContainer.classList.add("visible");
   });
 
   submitTradeStackBtn.addEventListener("click", () => {
-    const name = tradeStackNameInput.value.trim();
-    const rawInput = tradeInput.value;
-    const numbers = rawInput.split(",").map((n) => n.trim().padStart(2, "0"));
+    submitTradeStackBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      e.preventDefault();
 
-    if (!name || numbers.length === 0) return;
+      const name = tradeStackNameInput.value.trim();
+      const rawInput = tradeInput.value;
+      const numbers = rawInput.split(",").map((n) => n.trim().padStart(2, "0"));
 
-    const container = document.createElement("div");
-    container.style.marginBottom = "1rem";
+      if (!name || numbers.length === 0) return;
 
-    const header = document.createElement("div");
-    header.textContent = name;
-    header.style.cursor = "pointer";
-    header.style.backgroundColor = "#333";
-    header.style.color = "#fdc17e";
-    header.style.padding = "0.5rem";
-    header.style.borderRadius = "6px";
-    header.style.fontWeight = "bold";
-    header.style.marginBottom = "0.5rem";
+      const container = document.createElement("div");
+      const header = document.createElement("div");
 
-    const list = document.createElement("ul");
-    list.style.display = "none";
-    list.style.listStyle = "none";
-    list.style.paddingLeft = "1rem";
+      container.className = "ts-container";
+      header.className = "ts-header";
+      list.className = "ts-list";
+      li.className = "ts-list-item";
+      nameSpan.className = "ts-name";
 
-    numbers.forEach((num) => {
-      const itemName = itemNameMap[num];
-      if (!itemName) return;
+      const list = document.createElement("ul");
+      list.style.display = "none";
+      list.style.listStyle = "none";
+      list.style.paddingLeft = "1rem";
 
-      const li = document.createElement("li");
-      li.textContent = itemName.replace(/_/g, " ");
-      li.style.cursor = "pointer";
-      li.style.padding = "4px";
+      numbers.forEach((num) => {
+        const itemName = itemNameMap[num];
+        if (!itemName) return;
 
-      li.addEventListener("mouseenter", () => {
-        tradePreview.innerHTML = `
-          <img 
-            src="cards/items/${num}-${itemName}.gif" 
-            alt="${itemName}" 
-            class="card-img"
-          />
-        `;
+        const li = document.createElement("li");
+        li.style.display = "flex";
+        li.style.justifyContent = "space-between";
+        li.style.alignItems = "center";
+        li.style.padding = "4px";
+        li.style.cursor = "default";
+
+        const nameSpan = document.createElement("span");
+        nameSpan.textContent = itemName.replace(/_/g, " ");
+        nameSpan.style.cursor = "pointer";
+        nameSpan.addEventListener("mouseenter", () => {
+          tradePreview.innerHTML = `
+            <img 
+              src="cards/items/${num}-${itemName}.gif" 
+              alt="${itemName}" 
+              class="card-img"
+            />
+          `;
+        });
+        nameSpan.addEventListener("mouseleave", () => {
+          tradePreview.innerHTML = "";
+        });
+
+        const removeBtn = document.createElement("button");
+        removeBtn.textContent = "✖";
+        removeBtn.title = "Remove item";
+        removeBtn.className = "trade-remove-btn";
+        removeBtn.addEventListener("click", () => {
+          li.remove();
+          tradePreview.innerHTML = "";
+        });
+
+        li.appendChild(nameSpan);
+        li.appendChild(removeBtn);
+        list.appendChild(li);
       });
 
-      li.addEventListener("mouseleave", () => {
-        tradePreview.innerHTML = "";
+      header.addEventListener("click", () => {
+        list.style.display = list.style.display === "none" ? "block" : "none";
       });
 
-      list.appendChild(li);
+      container.appendChild(header);
+      container.appendChild(list);
+      allTradeStacks.appendChild(container);
+
+      // Reset form and hide input
+      tradeStackNameInput.value = "";
+      tradeInput.value = "";
+
+      const inputContainer = document.getElementById(
+        "tradeStackInputContainer"
+      );
+      inputContainer.classList.remove("visible");
+      inputContainer.classList.add("hidden");
+    });
+  });
+
+  const characterNameInput = document.getElementById("characterNameInput");
+  const addCharacterCardBtn = document.getElementById("addCharacterCardBtn");
+  const characterCardList = document.getElementById("characterCardList");
+  const characterCardPreview = document.getElementById("characterCardPreview");
+
+  addCharacterCardBtn.addEventListener("click", () => {
+    const name = characterNameInput.value.trim().replace(/\s+/g, "_");
+    const campaign = localStorage.getItem("userSelection");
+
+    if (!name || !campaign || !dataLibrary[campaign]) {
+      alert("No campaign or name specified.");
+      return;
+    }
+
+    const validNames = dataLibrary[campaign];
+    const match = validNames.find(
+      (entry) => entry.toLowerCase() === name.toLowerCase()
+    );
+
+    if (!match) {
+      alert("Character not found in selected campaign.");
+      return;
+    }
+
+    const li = document.createElement("li");
+    li.style.cursor = "pointer";
+    li.style.padding = "4px";
+    li.textContent = match.replace(/_/g, " ");
+
+    li.addEventListener("mouseenter", () => {
+      characterCardPreview.innerHTML = `
+      <img 
+        src="cards/Character/${campaign}/${match}.gif"
+        alt="${match}"
+        class="card-img"
+      />
+    `;
     });
 
-    // Toggle visibility on header click
-    header.addEventListener("click", () => {
-      list.style.display = list.style.display === "none" ? "block" : "none";
+    li.addEventListener("mouseleave", () => {
+      characterCardPreview.innerHTML = "";
     });
 
-    container.appendChild(header);
-    container.appendChild(list);
-    allTradeStacks.appendChild(container);
-
-    // Reset input fields
-    tradeStackNameInput.value = "";
-    tradeInput.value = "";
-    tradeStackInputContainer.style.display = "none";
+    characterCardList.appendChild(li);
+    characterNameInput.value = "";
   });
 });
 
@@ -339,3 +413,4 @@ window.addCardToShop = addCardToShop;
 window.addCardToInventory = addCardToInventory;
 window.toggleShop = toggleShop;
 window.handleAddCard = handleAddCard;
+window.toggleFolder = toggleFolder;

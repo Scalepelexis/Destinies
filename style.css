@@ -1,4 +1,5 @@
 :root {
+  --dark-color: #1b222c;
   --green-border: #615952;
   --dark-green: #231e20;
   --tan-medium: #fdc17e;
@@ -9,11 +10,6 @@
 }
 
 body {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   margin: 10rem 1rem;
   font-family: sans-serif;
   text-align: center;
@@ -27,6 +23,14 @@ body {
   color: var(--tan-medium); /* default text color for contrast */
 
   cursor: url("UI/icon_pointer_small.png"), auto;
+}
+
+.mainPage {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .header-row {
@@ -461,11 +465,11 @@ input[type="checkbox"] {
   position: fixed;
   top: 0;
   left: 0;
-  width: 250px;
+  width: 300px;
   height: 100%;
-  background-color: var(--dark-green);
+  background-color: var(--dark-color);
   color: var(--tan-medium);
-  padding: 1rem;
+  padding: 3rem 2rem;
   transform: translateX(-100%);
   transition: transform 0.3s ease;
   z-index: 1000;
@@ -502,6 +506,14 @@ input[type="checkbox"] {
   color: var(--tan-medium);
   text-decoration: none;
   font-size: 1.2rem;
+}
+
+.sidebarBtn {
+  width: 75%;
+  height: 40px;
+  font-size: medium;
+  font-display: block;
+  padding: 10px;
 }
 
 .inventory-container {
@@ -561,6 +573,21 @@ input[type="checkbox"] {
   display: block;
 }
 
+.trade-remove-btn {
+  background-color: var(--red-banner);
+  color: var(--tan-medium);
+  border: 1px solid var(--tan-medium);
+  border-radius: 6px;
+  font-size: 1rem;
+  padding: 2px 6px;
+  cursor: url("UI/icon_pointer_orange.png"), auto;
+  margin-left: 0.5rem;
+}
+
+.trade-remove-btn:hover {
+  background-color: #922;
+}
+
 .remove-card-btn {
   position: absolute;
   top: 16px;
@@ -578,4 +605,104 @@ input[type="checkbox"] {
 
 .remove-card-btn:hover {
   background-color: #922;
+}
+
+.shop-folder {
+  margin-top: 2rem;
+}
+
+.folder {
+  border: 1px solid var(--red-banner);
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.folder-header {
+  background-color: var(--red-banner);
+  color: var(var(--dark-green));
+  padding: 0.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+}
+.folder-content {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  opacity: 0;
+  padding: 0;
+  pointer-events: none;
+}
+
+.folder-content.open {
+  opacity: 1;
+  padding: 0.5rem;
+  pointer-events: auto;
+}
+
+.trade-stack-input.hidden {
+  display: none;
+}
+
+.trade-stack-input.visible {
+  display: flex;
+  flex: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.trade-stack-input.visible input {
+  width: 50%;
+  padding: 0.25rem;
+  margin: 0.5rem;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.mt-1 {
+  margin-top: 1rem;
+}
+
+.mb-2 {
+  margin-bottom: 2rem;
+}
+
+#userChoiceDisplay.hidden {
+  display: none !important;
+}
+
+.ts-container {
+  margin-bottom: 1rem;
+}
+
+.ts-header {
+  cursor: pointer;
+  background-color: #333;
+  color: #fdc17e;
+  padding: 0.5rem;
+  border-radius: 6px;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.ts-list {
+  display: none;
+  list-style: none;
+  padding-left: 1rem;
+}
+
+.ts-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px;
+  cursor: default;
+}
+
+.ts-name {
+  cursor: pointer;
 }
