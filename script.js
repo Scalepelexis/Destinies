@@ -273,8 +273,7 @@ window.addEventListener("DOMContentLoaded", () => {
     inputContainer.classList.add("visible");
   });
 
-  submitTradeStackBtn.addEventListener("click", () => {
-    submitTradeStackBtn.addEventListener("click", (e) => {
+  submitTradeStackBtn.addEventListener("click", (e) => {
       e.stopPropagation();
       e.preventDefault();
 
@@ -349,7 +348,6 @@ window.addEventListener("DOMContentLoaded", () => {
       inputContainer.classList.remove("visible");
       inputContainer.classList.add("hidden");
     });
-  });
 
   const characterNameInput = document.getElementById("characterNameInput");
   const addCharacterCardBtn = document.getElementById("addCharacterCardBtn");
