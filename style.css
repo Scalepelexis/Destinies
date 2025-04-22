@@ -629,6 +629,7 @@ input[type="checkbox"] {
 .folder-content {
   display: flex;
   flex-direction: column;
+  align-items: center;
   overflow: hidden;
   opacity: 0;
   padding: 0;
