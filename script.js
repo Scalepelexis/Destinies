@@ -288,12 +288,13 @@ window.addEventListener("DOMContentLoaded", () => {
       const header = document.createElement("div");
 
       container.className = "ts-container";
+      container.setAttribute("data-stack-name", name);
+
       header.className = "ts-header";
-      list.className = "ts-list";
-      li.className = "ts-list-item";
-      nameSpan.className = "ts-name";
+      header.textContent = name;
 
       const list = document.createElement("ul");
+      list.className = "ts-list";
       list.style.display = "none";
       list.style.listStyle = "none";
       list.style.paddingLeft = "1rem";
@@ -345,6 +346,69 @@ window.addEventListener("DOMContentLoaded", () => {
 
       container.appendChild(header);
       container.appendChild(list);
+
+      const controlRow = document.createElement("div");
+      controlRow.className = "mt-1 mb-2";
+
+      const addItemBtn = document.createElement("button");
+      addItemBtn.textContent = "Add Item";
+      addItemBtn.addEventListener("click", () => {
+        const itemNum = prompt("Enter item number (e.g. 15):");
+        if (!itemNum) return;
+
+        const num = itemNum.trim().padStart(2, "0");
+        const itemName = itemNameMap[num];
+        if (!itemName) {
+          alert("Invalid item number.");
+          return;
+        }
+
+        const li = document.createElement("li");
+        li.className = "ts-list-item";
+
+        const nameSpan = document.createElement("span");
+        nameSpan.className = "ts-name";
+        nameSpan.textContent = itemName.replace(/_/g, " ");
+        nameSpan.addEventListener("mouseenter", () => {
+          tradePreview.innerHTML = `
+      <img 
+        src="cards/items/${num}-${itemName}.gif" 
+        alt="${itemName}" 
+        class="card-img"
+      />
+    `;
+        });
+        nameSpan.addEventListener("mouseleave", () => {
+          tradePreview.innerHTML = "";
+        });
+
+        const removeBtn = document.createElement("button");
+        removeBtn.className = "trade-remove-btn";
+        removeBtn.textContent = "✖";
+        removeBtn.title = "Remove item";
+        removeBtn.addEventListener("click", () => {
+          li.remove();
+          tradePreview.innerHTML = "";
+        });
+
+        li.appendChild(nameSpan);
+        li.appendChild(removeBtn);
+        list.appendChild(li);
+      });
+
+      const deleteStackBtn = document.createElement("button");
+      deleteStackBtn.textContent = "Delete Stack";
+      deleteStackBtn.addEventListener("click", () => {
+        if (confirm(`Delete trader stack "${name}"?`)) {
+          container.remove();
+          tradePreview.innerHTML = "";
+        }
+      });
+
+      controlRow.appendChild(addItemBtn);
+      controlRow.appendChild(deleteStackBtn);
+      container.appendChild(controlRow);
+
       allTradeStacks.appendChild(container);
 
       // Reset form and hide input
