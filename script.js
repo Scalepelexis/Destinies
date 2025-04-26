@@ -295,9 +295,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
       const list = document.createElement("ul");
       list.className = "ts-list";
-      list.style.display = "none";
-      list.style.listStyle = "none";
-      list.style.paddingLeft = "1rem";
 
       numbers.forEach((num) => {
         const itemName = itemNameMap[num];
@@ -348,10 +345,11 @@ window.addEventListener("DOMContentLoaded", () => {
       container.appendChild(list);
 
       const controlRow = document.createElement("div");
-      controlRow.className = "mt-1 mb-2";
+      controlRow.className = "traderBtn";
 
       const addItemBtn = document.createElement("button");
       addItemBtn.textContent = "Add Item";
+
       addItemBtn.addEventListener("click", () => {
         const itemNum = prompt("Enter item number (e.g. 15):");
         if (!itemNum) return;

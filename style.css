@@ -3,9 +3,11 @@
   --green-border: #615952;
   --dark-green: #231e20;
   --tan-medium: #fdc17e;
+  --light-tan: #f5e9b6;
   --tan-dark: #c48f60;
   --purple-dark: #4c2845;
   --red-banner: #621717;
+  --red-window: #62171777;
   --window: #262f3777;
   cursor: url("UI/icon_pointer_small.png"), auto;
 }
@@ -19,10 +21,9 @@ body {
   font-size: larger;
 
   /* 🎨 Gradient background from bottom to top */
-  background-image: url("UI/bg_forest.jpg");
-  min-height: 100vh; /* ensure it covers full screen height */
-  color: var(--tan-medium); /* default text color for contrast */
 
+  color: var(--tan-medium); /* default text color for contrast */
+  background-image: url("UI/vert_forest.jpg");
   cursor: url("UI/icon_pointer_small.png"), auto;
 }
 
@@ -120,12 +121,13 @@ button {
   font-family: Georgia, "Times New Roman", Times, serif;
   font-weight: bold;
   font-size: larger;
+  padding: 4px;
   border: none;
   border-radius: 5px;
   background-color: var(--red-banner);
   color: var(--tan-medium);
   cursor: url("UI/icon_pointer_orange.png"), auto;
-  margin: 0.25rem auto 1rem; /* top: 0, left/right: auto, bottom: 1rem */
+  margin: 4px;
 }
 
 button:hover {
@@ -279,6 +281,7 @@ input[type="checkbox"] {
   margin: 0.25rem;
   cursor: url("UI/icon_pointer_orange.png"), auto;
   transition: transform 0.2s;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 }
 
 .campaign-btn img {
@@ -515,18 +518,26 @@ input[type="checkbox"] {
 }
 
 .sidebarBtn {
-  width: 25%;
+  width: fit-content;
   height: 40px;
   font-size: medium;
   font-display: block;
   padding: 10px;
 }
 
+.traderBtn {
+  width: fit-content;
+  padding: 2px;
+  margin: 2px;
+  height: 40px;
+  font-size: small;
+}
+
 .inventory-container {
   padding: 1rem;
   margin-top: 1rem;
   background-color: var(--window);
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 5px 5px 10px rgba(0, 20, 0, 1);
   border-radius: 12px;
   width: fit-content;
   text-align: center;
@@ -619,14 +630,14 @@ input[type="checkbox"] {
 }
 
 .folder {
-  border: 1px solid var(--red-banner);
+  border: 1px solid var(--dark-green);
   border-radius: 6px;
   margin-bottom: 1rem;
   overflow: hidden;
 }
 
 .folder-header {
-  background-color: var(--red-banner);
+  background-color: var(--dark-green);
   color: var(var(--dark-green));
   padding: 0.5rem;
   font-weight: bold;
@@ -694,16 +705,24 @@ input[type="checkbox"] {
 }
 
 .ts-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px;
   margin-bottom: 1rem;
 }
 
 .ts-header {
+  width: 100%;
   cursor: pointer;
-  background-color: #333;
-  color: #fdc17e;
+  background-color: var(--red-window);
+  color: var(--light-tan);
   padding: 0.5rem;
+  border-bottom: 4px solid var(--light-tan);
   border-radius: 6px;
   font-weight: bold;
+  letter-spacing: 4px;
   margin-bottom: 0.5rem;
 }
 
@@ -711,6 +730,7 @@ input[type="checkbox"] {
   display: none;
   list-style: none;
   padding-left: 1rem;
+  margin: 5px;
 }
 
 .ts-list-item {
@@ -718,6 +738,7 @@ input[type="checkbox"] {
   justify-content: space-between;
   align-items: center;
   padding: 4px;
+  margin: 5px;
   cursor: default;
 }
 
