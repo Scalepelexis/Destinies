@@ -367,18 +367,25 @@ window.addEventListener("DOMContentLoaded", () => {
         const nameSpan = document.createElement("span");
         nameSpan.className = "ts-name";
         nameSpan.textContent = itemName.replace(/_/g, " ");
-        nameSpan.addEventListener("mouseenter", () => {
-          tradePreview.innerHTML = `
+       
+       let currentPreview = null;
+
+nameSpan.addEventListener("click", () => {
+  if (currentPreview === name) {
+    // If clicking same item again, hide it
+    tradePreview.innerHTML = "";
+    currentPreview = null;
+  } else {
+    tradePreview.innerHTML = `
       <img 
         src="cards/items/${num}-${itemName}.gif" 
         alt="${itemName}" 
         class="card-img"
       />
     `;
-        });
-        nameSpan.addEventListener("mouseleave", () => {
-          tradePreview.innerHTML = "";
-        });
+    currentPreview = name;
+  }
+});
 
         const removeBtn = document.createElement("button");
         removeBtn.className = "trade-remove-btn";
