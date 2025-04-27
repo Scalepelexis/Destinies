@@ -273,154 +273,163 @@ window.addEventListener("DOMContentLoaded", () => {
     inputContainer.classList.add("visible");
   });
 
-  submitTradeStackBtn.addEventListener("click", () => {
-    submitTradeStackBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      e.preventDefault();
+  // Put this near the top if not already:
+let currentPreview = null;
 
-      const name = tradeStackNameInput.value.trim();
-      const rawInput = tradeInput.value;
-      const numbers = rawInput.split(",").map((n) => n.trim().padStart(2, "0"));
+// Handler for creating a trader stack
+submitTradeStackBtn.addEventListener("click", (e) => {
+  e.stopPropagation();
+  e.preventDefault();
 
-      if (!name || numbers.length === 0) return;
+  const name = tradeStackNameInput.value.trim();
+  const rawInput = tradeInput.value;
+  const numbers = rawInput.split(",").map((n) => n.trim().padStart(2, "0"));
 
-      const container = document.createElement("div");
-      const header = document.createElement("div");
+  if (!name || numbers.length === 0) return;
 
-      container.className = "ts-container";
-      container.setAttribute("data-stack-name", name);
+  const container = document.createElement("div");
+  container.className = "ts-container";
+  container.setAttribute("data-stack-name", name);
 
-      header.className = "ts-header";
-      header.textContent = name;
+  // Create the trader name header
+  const header = document.createElement("div");
+  header.className = "ts-header";
+  header.textContent = name;
 
-      const list = document.createElement("ul");
-      list.className = "ts-list";
+  // Toggle open/close items
+  header.addEventListener("click", () => {
+    list.style.display = list.style.display === "none" ? "block" : "none";
+  });
 
-      numbers.forEach((num) => {
-  const itemName = itemNameMap[num];
-  if (!itemName) return;
+  // Create the item list
+  const list = document.createElement("ul");
+  list.className = "ts-list";
+  list.style.display = "none";
 
-  const li = document.createElement("li");
-  li.className = "ts-list-item";
+  numbers.forEach((num) => {
+    const itemName = itemNameMap[num];
+    if (!itemName) return;
 
-  const nameSpan = document.createElement("span");
-  nameSpan.className = "ts-name";
-  nameSpan.textContent = itemName.replace(/_/g, " ");
+    const li = document.createElement("li");
+    li.className = "ts-list-item";
 
-  // ⭐ NEW CLICK PREVIEW CODE
-  nameSpan.addEventListener("click", () => {
-    if (currentPreview === nameSpan.textContent) {
+    const nameSpan = document.createElement("span");
+    nameSpan.className = "ts-name";
+    nameSpan.textContent = itemName.replace(/_/g, " ");
+
+    // Click to preview item (mobile friendly)
+    nameSpan.addEventListener("click", () => {
+      if (currentPreview === nameSpan.textContent) {
+        tradePreview.innerHTML = "";
+        currentPreview = null;
+      } else {
+        tradePreview.innerHTML = `
+          <img 
+            src="cards/items/${num}-${itemName}.gif" 
+            alt="${itemName}" 
+            class="card-img"
+          />
+        `;
+        currentPreview = nameSpan.textContent;
+      }
+    });
+
+    const removeBtn = document.createElement("button");
+    removeBtn.textContent = "✖";
+    removeBtn.title = "Remove item";
+    removeBtn.className = "trade-remove-btn";
+    removeBtn.addEventListener("click", () => {
+      li.remove();
       tradePreview.innerHTML = "";
-      currentPreview = null;
-    } else {
-      tradePreview.innerHTML = `
-        <img 
-          src="cards/items/${num}-${itemName}.gif" 
-          alt="${itemName}" 
-          class="card-img"
-        />
-      `;
-      currentPreview = nameSpan.textContent;
+    });
+
+    li.appendChild(nameSpan);
+    li.appendChild(removeBtn);
+    list.appendChild(li);
+  });
+
+  // Add "Add Item" and "Delete Stack" buttons
+  const controlRow = document.createElement("div");
+  controlRow.className = "mt-1 mb-2";
+
+  const addItemBtn = document.createElement("button");
+  addItemBtn.textContent = "Add Item";
+  addItemBtn.addEventListener("click", () => {
+    const itemNum = prompt("Enter item number (e.g. 15):");
+    if (!itemNum) return;
+
+    const num = itemNum.trim().padStart(2, "0");
+    const itemName = itemNameMap[num];
+    if (!itemName) {
+      alert("Invalid item number.");
+      return;
+    }
+
+    const li = document.createElement("li");
+    li.className = "ts-list-item";
+
+    const nameSpan = document.createElement("span");
+    nameSpan.className = "ts-name";
+    nameSpan.textContent = itemName.replace(/_/g, " ");
+
+    nameSpan.addEventListener("click", () => {
+      if (currentPreview === nameSpan.textContent) {
+        tradePreview.innerHTML = "";
+        currentPreview = null;
+      } else {
+        tradePreview.innerHTML = `
+          <img 
+            src="cards/items/${num}-${itemName}.gif" 
+            alt="${itemName}" 
+            class="card-img"
+          />
+        `;
+        currentPreview = nameSpan.textContent;
+      }
+    });
+
+    const removeBtn = document.createElement("button");
+    removeBtn.textContent = "✖";
+    removeBtn.title = "Remove item";
+    removeBtn.className = "trade-remove-btn";
+    removeBtn.addEventListener("click", () => {
+      li.remove();
+      tradePreview.innerHTML = "";
+    });
+
+    li.appendChild(nameSpan);
+    li.appendChild(removeBtn);
+    list.appendChild(li);
+  });
+
+  const deleteStackBtn = document.createElement("button");
+  deleteStackBtn.textContent = "Delete Stack";
+  deleteStackBtn.addEventListener("click", () => {
+    if (confirm(`Delete trader stack "${name}"?`)) {
+      container.remove();
+      tradePreview.innerHTML = "";
     }
   });
 
-  const removeBtn = document.createElement("button");
-  removeBtn.textContent = "✖";
-  removeBtn.title = "Remove item";
-  removeBtn.className = "trade-remove-btn";
-  removeBtn.addEventListener("click", () => {
-    li.remove();
-    tradePreview.innerHTML = "";
-  });
+  controlRow.appendChild(addItemBtn);
+  controlRow.appendChild(deleteStackBtn);
 
-  li.appendChild(nameSpan);
-  li.appendChild(removeBtn);
-  list.appendChild(li);
+  // Build the container
+  container.appendChild(header);
+  container.appendChild(list);
+  container.appendChild(controlRow);
+  allTradeStacks.appendChild(container);
+
+  // Reset input
+  tradeStackNameInput.value = "";
+  tradeInput.value = "";
+
+  const inputContainer = document.getElementById("tradeStackInputContainer");
+  inputContainer.classList.remove("visible");
+  inputContainer.classList.add("hidden");
 });
 
-      const controlRow = document.createElement("div");
-      controlRow.className = "traderBtn";
-
-      const addItemBtn = document.createElement("button");
-      addItemBtn.textContent = "Add Item";
-
-      addItemBtn.addEventListener("click", () => {
-        const itemNum = prompt("Enter item number (e.g. 15):");
-        if (!itemNum) return;
-
-        const num = itemNum.trim().padStart(2, "0");
-        const itemName = itemNameMap[num];
-        if (!itemName) {
-          alert("Invalid item number.");
-          return;
-        }
-
-        const li = document.createElement("li");
-        li.className = "ts-list-item";
-
-        const nameSpan = document.createElement("span");
-        nameSpan.className = "ts-name";
-        nameSpan.textContent = itemName.replace(/_/g, " ");
-       
-       let currentPreview = null;
-
-nameSpan.addEventListener("click", () => {
-  if (currentPreview === name) {
-    // If clicking same item again, hide it
-    tradePreview.innerHTML = "";
-    currentPreview = null;
-  } else {
-    tradePreview.innerHTML = `
-      <img 
-        src="cards/items/${num}-${itemName}.gif" 
-        alt="${itemName}" 
-        class="card-img"
-      />
-    `;
-    currentPreview = name;
-  }
-});
-
-        const removeBtn = document.createElement("button");
-        removeBtn.className = "trade-remove-btn";
-        removeBtn.textContent = "✖";
-        removeBtn.title = "Remove item";
-        removeBtn.addEventListener("click", () => {
-          li.remove();
-          tradePreview.innerHTML = "";
-        });
-
-        li.appendChild(nameSpan);
-        li.appendChild(removeBtn);
-        list.appendChild(li);
-      });
-
-      const deleteStackBtn = document.createElement("button");
-      deleteStackBtn.textContent = "Delete Stack";
-      deleteStackBtn.addEventListener("click", () => {
-        if (confirm(`Delete trader stack "${name}"?`)) {
-          container.remove();
-          tradePreview.innerHTML = "";
-        }
-      });
-
-      controlRow.appendChild(addItemBtn);
-      controlRow.appendChild(deleteStackBtn);
-      container.appendChild(controlRow);
-
-      allTradeStacks.appendChild(container);
-
-      // Reset form and hide input
-      tradeStackNameInput.value = "";
-      tradeInput.value = "";
-
-      const inputContainer = document.getElementById(
-        "tradeStackInputContainer"
-      );
-      inputContainer.classList.remove("visible");
-      inputContainer.classList.add("hidden");
-    });
-  });
+ 
 
   const characterNameInput = document.getElementById("characterNameInput");
   const addCharacterCardBtn = document.getElementById("addCharacterCardBtn");
