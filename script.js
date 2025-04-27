@@ -297,52 +297,46 @@ window.addEventListener("DOMContentLoaded", () => {
       list.className = "ts-list";
 
       numbers.forEach((num) => {
-        const itemName = itemNameMap[num];
-        if (!itemName) return;
+  const itemName = itemNameMap[num];
+  if (!itemName) return;
 
-        const li = document.createElement("li");
-        li.style.display = "flex";
-        li.style.justifyContent = "space-between";
-        li.style.alignItems = "center";
-        li.style.padding = "4px";
-        li.style.cursor = "default";
+  const li = document.createElement("li");
+  li.className = "ts-list-item";
 
-        const nameSpan = document.createElement("span");
-        nameSpan.textContent = itemName.replace(/_/g, " ");
-        nameSpan.style.cursor = "pointer";
-        nameSpan.addEventListener("mouseenter", () => {
-          tradePreview.innerHTML = `
-            <img 
-              src="cards/items/${num}-${itemName}.gif" 
-              alt="${itemName}" 
-              class="card-img"
-            />
-          `;
-        });
-        nameSpan.addEventListener("mouseleave", () => {
-          tradePreview.innerHTML = "";
-        });
+  const nameSpan = document.createElement("span");
+  nameSpan.className = "ts-name";
+  nameSpan.textContent = itemName.replace(/_/g, " ");
 
-        const removeBtn = document.createElement("button");
-        removeBtn.textContent = "✖";
-        removeBtn.title = "Remove item";
-        removeBtn.className = "trade-remove-btn";
-        removeBtn.addEventListener("click", () => {
-          li.remove();
-          tradePreview.innerHTML = "";
-        });
+  // ⭐ NEW CLICK PREVIEW CODE
+  nameSpan.addEventListener("click", () => {
+    if (currentPreview === nameSpan.textContent) {
+      tradePreview.innerHTML = "";
+      currentPreview = null;
+    } else {
+      tradePreview.innerHTML = `
+        <img 
+          src="cards/items/${num}-${itemName}.gif" 
+          alt="${itemName}" 
+          class="card-img"
+        />
+      `;
+      currentPreview = nameSpan.textContent;
+    }
+  });
 
-        li.appendChild(nameSpan);
-        li.appendChild(removeBtn);
-        list.appendChild(li);
-      });
+  const removeBtn = document.createElement("button");
+  removeBtn.textContent = "✖";
+  removeBtn.title = "Remove item";
+  removeBtn.className = "trade-remove-btn";
+  removeBtn.addEventListener("click", () => {
+    li.remove();
+    tradePreview.innerHTML = "";
+  });
 
-      header.addEventListener("click", () => {
-        list.style.display = list.style.display === "none" ? "block" : "none";
-      });
-
-      container.appendChild(header);
-      container.appendChild(list);
+  li.appendChild(nameSpan);
+  li.appendChild(removeBtn);
+  list.appendChild(li);
+});
 
       const controlRow = document.createElement("div");
       controlRow.className = "traderBtn";
